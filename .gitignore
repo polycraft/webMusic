@@ -5,3 +5,5 @@
 .tomcatplugin
 
 WEB-INF/lib/*
+
+.settings
