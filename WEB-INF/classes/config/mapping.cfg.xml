@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <mapping resource="model/RecordLibrary.hbm.xml" />
+        <mapping resource="model/Person.hbm.xml" />
+        <mapping resource="model/User.hbm.xml" />
+        <mapping resource="model/Track.hbm.xml" />
+        <mapping resource="model/LinkTrackPerson.hbm.xml" />
+        <mapping resource="model/LinkRecordPerson.hbm.xml" />
+        <mapping resource="model/Category.hbm.xml" />
+        <mapping resource="model/Style.hbm.xml" />
+        <mapping resource="model/Copy.hbm.xml" />
+        <mapping resource="model/Language.hbm.xml" />
+        <mapping resource="model/TrackRole.hbm.xml" />
+        <mapping resource="model/RecordRole.hbm.xml" />
+        <mapping resource="model/Record.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>
