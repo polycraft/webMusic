@@ -7,3 +7,5 @@
 WEB-INF/lib/*
 
 .settings
+
+.directory
