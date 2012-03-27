@@ -1,1 +1,7 @@
-lib/*
+.classpath
+
+.project
+
+.tomcatplugin
+
+WEB-INF/lib/*
