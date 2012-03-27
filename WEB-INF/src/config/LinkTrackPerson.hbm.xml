@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27 mars 2012 19:24:38 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="model.LinkTrackPerson" table="link_track_person" catalog="projetweb">
+        <composite-id name="id" class="model.LinkTrackPersonId">
+            <key-property name="idTrack" type="int">
+                <column name="id_track" />
+            </key-property>
+            <key-property name="idPerson" type="int">
+                <column name="id_person" />
+            </key-property>
+            <key-property name="idTrackRole" type="int">
+                <column name="id_track_role" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="track" class="model.Track" update="false" insert="false" fetch="select">
+            <column name="id_track" not-null="true" />
+        </many-to-one>
+        <many-to-one name="person" class="model.Person" update="false" insert="false" fetch="select">
+            <column name="id_person" not-null="true" />
+        </many-to-one>
+        <many-to-one name="trackRole" class="model.TrackRole" update="false" insert="false" fetch="select">
+            <column name="id_track_role" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

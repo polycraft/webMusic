@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27 mars 2012 19:24:38 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="model.Track" table="track" catalog="projetweb">
+        <id name="idTrack" type="java.lang.Integer">
+            <column name="id_track" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="style" class="model.Style" fetch="select">
+            <column name="id_style" not-null="true" />
+        </many-to-one>
+        <property name="rythm" type="string">
+            <column name="rythm" length="100" not-null="true" />
+        </property>
+        <property name="label" type="int">
+            <column name="label" not-null="true" />
+        </property>
+        <property name="playingTime" type="int">
+            <column name="playing_time" not-null="true" />
+        </property>
+        <property name="releaseDate" type="date">
+            <column name="release_date" length="10" not-null="true" />
+        </property>
+        <set name="records" table="link_record_track" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_track" not-null="true" />
+            </key>
+            <many-to-many entity-name="model.Record">
+                <column name="id_record" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="linkTrackPersons" table="link_track_person" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_track" not-null="true" />
+            </key>
+            <one-to-many class="model.LinkTrackPerson" />
+        </set>
+    </class>
+</hibernate-mapping>

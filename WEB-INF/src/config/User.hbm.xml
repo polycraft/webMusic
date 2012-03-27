@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27 mars 2012 19:24:38 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="model.User" table="user" catalog="projetweb">
+        <id name="idUser" type="java.lang.Integer">
+            <column name="id_user" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="language" class="model.Language" fetch="select">
+            <column name="id_language" not-null="true" />
+        </many-to-one>
+        <property name="username" type="string">
+            <column name="username" length="100" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="100" not-null="true" />
+        </property>
+        <property name="emailAdress" type="string">
+            <column name="email_adress" length="200" not-null="true" />
+        </property>
+        <property name="firstname" type="string">
+            <column name="firstname" length="100" not-null="true" />
+        </property>
+        <property name="lastname" type="string">
+            <column name="lastname" length="100" not-null="true" />
+        </property>
+        <property name="biography" type="string">
+            <column name="biography" length="65535" not-null="true" />
+        </property>
+        <property name="picture" type="string">
+            <column name="picture" length="200" not-null="true" />
+        </property>
+        <property name="website" type="string">
+            <column name="website" length="200" not-null="true" />
+        </property>
+        <property name="socialNetworkAccount" type="string">
+            <column name="social_network_account" length="200" not-null="true" />
+        </property>
+        <set name="recordLibraries" table="record_library" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_user" not-null="true" />
+            </key>
+            <one-to-many class="model.RecordLibrary" />
+        </set>
+    </class>
+</hibernate-mapping>
