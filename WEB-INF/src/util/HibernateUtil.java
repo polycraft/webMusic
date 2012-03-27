@@ -13,7 +13,7 @@ public class HibernateUtil {
     static {
         try {
         	Configuration configuration = new Configuration();
-            configuration.configure().configure("mapping.cfg.xml");
+            configuration.configure("config/hibernate.cfg.xml").configure("config/mapping.cfg.xml");
             serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();        
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
         } catch (Throwable ex) {
