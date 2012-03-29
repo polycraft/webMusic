@@ -1,26 +1,28 @@
 package util.validator;
 
-import util.validator.error.TooLongError;
-import util.validator.error.TooShortError;
-
 public class LengthValidator extends SimpleValidator<String> {
-	private int min;
-	private int max;
+	private LengthMinValidator min;
+	private LengthMaxValidator max;
 	
 	public LengthValidator(int min, int max) {
 		super();
-		this.min = min;
-		this.max = max;
+		if(min>max)
+			throw new IllegalArgumentException("min must be inferior to max");
+		this.min=new LengthMinValidator(min);
+		this.max=new LengthMaxValidator(max);
 	}
 
 	public boolean valid() {		
-		int length=value.length();
-		if(length<min) {
-			error=new TooShortError(min);
-			return false;
-		}
-		else if(length>max) {
-			error=new TooLongError(max);
+		try {
+			if(!min.validate(this.value)) {
+				error=min.getError();
+				return false;
+			}
+			else if(!max.validate(this.value)) {
+				error=max.getError();
+				return false;
+			}
+		} catch (Exception e) {
 			return false;
 		}
 		return true;

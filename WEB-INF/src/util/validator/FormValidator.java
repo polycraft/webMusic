@@ -1,5 +1,6 @@
 package util.validator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import util.validator.error.Error;
@@ -9,16 +10,20 @@ public class FormValidator extends SimpleValidator<List<ChainValidator>>{
 	
 	public Error error;
 	
+	public FormValidator() {
+		value=new ArrayList<ChainValidator>();
+	}
+
 	public boolean valid() {
 		try {
-			boolean hasError=false;
+			boolean isValid=true;
 			
 			for(ChainValidator validator:value) {
 				if(!validator.validate())
-					hasError=true;
+					isValid=false;
 			}
 			
-			return hasError;
+			return isValid;
 		} catch (Exception e) {
 			return false;
 		}

@@ -7,7 +7,7 @@ public abstract class SimpleValidator<T> extends Validator<T> {
 	
 	@Override
 	public boolean hasError() {
-		return error==null;
+		return error!=null;
 	}
 
 	@Override

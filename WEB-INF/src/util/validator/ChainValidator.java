@@ -8,7 +8,6 @@ import util.validator.error.Error;
 public class ChainValidator<T> extends Validator<T>{
 	private List<Validator<T>> validators;
 	private List<Error> errors;
-	private T value;
 	
 	
 	public ChainValidator() {
@@ -21,16 +20,16 @@ public class ChainValidator<T> extends Validator<T>{
 	 */
 	protected boolean valid() {
 		try {
-			boolean hasError=false;
+			boolean isValid=true;
 			for(Validator<T> validator:validators)
 			{
 				//On vérifie si il y a une erreur
 				if(!validator.validate(value)) {
 					errors.add(validator.getError());
-					hasError=true;
+					isValid=false;
 				}
 			}			
-			return hasError;
+			return isValid;
 		} catch (Exception e) {
 			return false;
 		}
@@ -50,7 +49,7 @@ public class ChainValidator<T> extends Validator<T>{
 	public boolean hasError() {
 		if(errors==null)
 			return false;
-		return errors.size()==0;
+		return errors.size()!=0;
 	}
 	
 	/*
@@ -63,8 +62,10 @@ public class ChainValidator<T> extends Validator<T>{
 	/*
 	 * Retourne la première erreurs
 	 */
-	public Error getError() {
-		return errors.get(0);
+	public Error getError() throws Exception {
+		if(hasError())
+			return errors.get(0);
+		throw new Exception("No error");
 	}
 	
 	/*
@@ -72,6 +73,11 @@ public class ChainValidator<T> extends Validator<T>{
 	 */
 	public ChainValidator<T> add(Validator<T> validator) {
 		validators.add(validator);
+		return this;		
+	}
+	
+	public ChainValidator<T> set(T value) {
+		this.setValue(value);
 		return this;		
 	}
 	
