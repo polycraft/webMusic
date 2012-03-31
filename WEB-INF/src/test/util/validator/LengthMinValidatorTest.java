@@ -4,8 +4,6 @@ import org.junit.Test;
 
 import util.validator.LengthMinValidator;
 
-import junit.framework.TestCase;
-
 public class LengthMinValidatorTest extends SimpleValidatorTest {	
 	
 	@Test

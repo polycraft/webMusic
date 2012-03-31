@@ -4,8 +4,6 @@ import org.junit.Test;
 
 import util.validator.LengthMaxValidator;
 
-import junit.framework.TestCase;
-
 public class LengthMaxValidatorTest extends SimpleValidatorTest {	
 	
 	@Test

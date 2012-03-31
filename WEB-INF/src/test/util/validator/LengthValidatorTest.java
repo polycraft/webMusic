@@ -6,8 +6,6 @@ import util.validator.LengthMaxValidator;
 import util.validator.LengthMinValidator;
 import util.validator.LengthValidator;
 
-import junit.framework.TestCase;
-
 public class LengthValidatorTest extends SimpleValidatorTest {	
 	
 	@Test
