@@ -50,8 +50,7 @@ public class Register extends HttpServlet {
 		request.setAttribute("languages", languages);
 		request.setAttribute("error", this.error);
 		request.setAttribute("errorType", this.errorType);
-		RequestDispatcher dispatch = request
-				.getRequestDispatcher("WEB-INF/src/view/register/register.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("WEB-INF/src/view/register/register.jsp");
 		dispatch.forward(request, response);
 	}
 
@@ -64,20 +63,20 @@ public class Register extends HttpServlet {
 		//on vérifie que les champs username / password / emailAdress sont non vides
 		//FormValidator registerValidator=new FormValidator();		
 		ChainValidator<String> fieldUsername=new ChainValidator<String>().add(new BlankValidator());
-		//ChainValidator<String> fieldPassword1=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(20));
-		//ChainValidator<String> fieldPassword2=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(20));
-		//ChainValidator<String> fieldEmail=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(20));
+		ChainValidator<String> fieldPassword1=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(20));
+		ChainValidator<String> fieldPassword2=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(20));
+		ChainValidator<String> fieldEmail=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(20));
 		
 		//registerValidator.add(fieldUsername);//.add(fieldPassword1).add(fieldPassword2).add(fieldEmail);
 		
 		
 		fieldUsername.set(request.getParameter("username"));
-		//fieldPassword1.set(request.getParameter("password1"));
-		//fieldPassword2.set(request.getParameter("password2"));
-		//fieldEmail.set(request.getParameter("emailAdress"));
+		fieldPassword1.set(request.getParameter("password1"));
+		fieldPassword2.set(request.getParameter("password2"));
+		fieldEmail.set(request.getParameter("emailAdress"));
 		
 			try {
-				if(fieldUsername.validate())
+				if(fieldUsername.validate() && fieldPassword1.validate() && fieldPassword2.validate() && fieldEmail.validate())
 				{
 					if(request.getParameter("password1").equals(request.getParameter("password2")))
 					{
