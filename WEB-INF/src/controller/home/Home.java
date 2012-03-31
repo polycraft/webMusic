@@ -30,7 +30,7 @@ public class Home extends HttpServlet {
 		throws IOException, ServletException{
 		
 		
-		RequestDispatcher dispatch = request.getRequestDispatcher("WEB-INF/src/view/home.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("WEB-INF/src/view/home/home.jsp");
 		dispatch.forward(request, response);		
 		
 	}	
