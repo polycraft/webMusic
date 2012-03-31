@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+
+	<servlet>
+		<servlet-class>controller.home.Home</servlet-class>
+		<servlet-name>homeServlet</servlet-name>
+	</servlet>
+
+	<servlet>
+		<servlet-class>controller.register.Register</servlet-class>
+		<servlet-name>registerServlet</servlet-name>
+	</servlet>
+
+
+	<servlet-mapping>
+		<servlet-name>homeServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet-mapping>
+		<servlet-name>registerServlet</servlet-name>
+		<url-pattern>/register</url-pattern>
+	</servlet-mapping>
+	
+
+</web-app>
