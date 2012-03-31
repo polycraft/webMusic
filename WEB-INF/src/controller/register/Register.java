@@ -51,7 +51,7 @@ public class Register extends HttpServlet {
 		request.setAttribute("error", this.error);
 		request.setAttribute("errorType", this.errorType);
 		RequestDispatcher dispatch = request
-				.getRequestDispatcher("WEB-INF/src/view/register.jsp");
+				.getRequestDispatcher("WEB-INF/src/view/register/register.jsp");
 		dispatch.forward(request, response);
 	}
 
