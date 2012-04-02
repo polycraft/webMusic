@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import util.HibernateUtil;
 import util.validator.BlankValidator;
 import util.validator.ChainValidator;
+import util.validator.FormValidator;
 import util.validator.LengthMaxValidator;
 import model.Language;
 import model.User;
@@ -49,18 +50,15 @@ public class Login extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
-		//FormValidator registerValidator=new FormValidator();		
-		ChainValidator<String> fieldUsername=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(10));
-		ChainValidator<String> fieldPassword=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(20));
-		//registerValidator.add(fieldUsername);//.add(fieldPassword1)
-		
+		//Recupération des variables//
 		String username = request.getParameter("username");
-		String password  = request.getParameter("password");
-		fieldUsername.set(username);
-		fieldPassword.set(password);
+		String password = request.getParameter("password");
+		
+		//Creation du validator//
+		FormValidator loginValidator = getValidator(username, password);
 		
 		try {
-			if(fieldUsername.validate() && fieldPassword.validate()){
+			if(loginValidator.validate()){
 
 				//on recherche dans la BD:
 				// Creation de notre objet Session grace à notre HibernateUtil
@@ -70,13 +68,14 @@ public class Login extends HttpServlet {
 
 				
 				if(user.size() == 1){
-					out.println("loged");
-					
 					HttpSession session = request.getSession();
 					session.setAttribute("idUser", user.get(0).getIdUser());
 					session.setAttribute("username", user.get(0).getUsername());
 					
 					error = false;
+					
+					response.sendRedirect("");
+					
 				}
 				else{
 					error = true;
@@ -94,6 +93,22 @@ public class Login extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	private FormValidator getValidator(String username,String password){
+		
+		//on vérifie que les champs username / password / emailAdress sont non vides et la taille < max
+		FormValidator Validator=new FormValidator();		
+		ChainValidator<String> fieldUsername=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(10));
+		ChainValidator<String> fieldPassword=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(20));
+		
+		Validator.add(fieldUsername).add(fieldPassword);
+		
+		fieldUsername.set(username);
+		fieldPassword.set(password);
+		
+		return Validator;
+
 	}
 }
 

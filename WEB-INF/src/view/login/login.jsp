@@ -22,5 +22,6 @@
 		<p style="text-align: center;">	username : <input type="text" name="username" /></p>
 		<p style="text-align: center;">	password : <input type="password" name="password" /></p>
 		<p style="text-align:center;width:50%;margin:auto;"><input type="submit" name="Valider" value="Valider"/></p>
+	
 </body>
 </html>

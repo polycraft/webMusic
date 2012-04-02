@@ -11,6 +11,18 @@
 		<servlet-name>registerServlet</servlet-name>
 	</servlet>
 
+	<servlet>
+		<servlet-class>controller.login.Login</servlet-class>
+		<servlet-name>loginServlet</servlet-name>
+	</servlet>
+	
+	
+	<servlet>
+		<servlet-class>controller.disconnect.Disconnect</servlet-class>
+		<servlet-name>disconnectServlet</servlet-name>
+	</servlet>	
+	
+
 
 	<servlet-mapping>
 		<servlet-name>homeServlet</servlet-name>
@@ -24,5 +36,14 @@
 		<url-pattern>/register</url-pattern>
 	</servlet-mapping>
 	
+	<servlet-mapping>
+		<servlet-name>loginServlet</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>disconnectServlet</servlet-name>
+		<url-pattern>/disconnect</url-pattern>
+	</servlet-mapping>
 
 </web-app>

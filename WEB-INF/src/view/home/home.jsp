@@ -4,12 +4,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>register jsp</title>
+<title>HOME</title>
 </head>
 <body>
 
 	<h1>HOME</h1>
-	<a href="register">Register</a>
+	
+	<%
+	if((session.getAttribute("idUser") != null) && session.getAttribute("username") != null){
+		out.println("LOGED !: "+ session.getAttribute("idUser").toString()+" / "+ session.getAttribute("username").toString());
+		out.println("<a href='disconnect'>Disconnect</a>");
+	}
+	else{
+		out.println("<a href='register'>Register</a>");
+		out.println("<a href='login'>Connect</a>");
+	}
+	%>
+
 
 </body>
 </html>

@@ -60,23 +60,17 @@ public class Register extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
-		//on vérifie que les champs username / password / emailAdress sont non vides
-		//FormValidator registerValidator=new FormValidator();		
-		ChainValidator<String> fieldUsername=new ChainValidator<String>().add(new BlankValidator());
-		ChainValidator<String> fieldPassword1=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(20));
-		ChainValidator<String> fieldPassword2=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(20));
-		ChainValidator<String> fieldEmail=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(20));
+		//Recupération des variables//
+		String username = request.getParameter("username");
+		String password1 = request.getParameter("password1");
+		String password2 = request.getParameter("password2");
+		String emailAdress = request.getParameter("emailAdress");
 		
-		//registerValidator.add(fieldUsername);//.add(fieldPassword1).add(fieldPassword2).add(fieldEmail);
-		
-		
-		fieldUsername.set(request.getParameter("username"));
-		fieldPassword1.set(request.getParameter("password1"));
-		fieldPassword2.set(request.getParameter("password2"));
-		fieldEmail.set(request.getParameter("emailAdress"));
+		//Creation du validator//
+		FormValidator registerValidator = getValidator(username,password1,password2,emailAdress);
 		
 			try {
-				if(fieldUsername.validate() && fieldPassword1.validate() && fieldPassword2.validate() && fieldEmail.validate())
+				if(registerValidator.validate())
 				{
 					if(request.getParameter("password1").equals(request.getParameter("password2")))
 					{
@@ -123,7 +117,7 @@ public class Register extends HttpServlet {
 				
 						error = false;
 						
-						out.println("registered !");
+						out.println("<p>registered !</p>  <a src='/'>Home</a>");
 						//Enregistrement du nouvel User
 					}
 					else {
@@ -144,5 +138,26 @@ public class Register extends HttpServlet {
 			}
 
 				
+	}
+	
+	
+	private FormValidator getValidator(String username,String password1,String password2, String emailAdress){
+		
+		//on vérifie que les champs username / password / emailAdress sont non vides et la taille < max
+		FormValidator Validator=new FormValidator();		
+		ChainValidator<String> fieldUsername=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(10));
+		ChainValidator<String> fieldPassword1=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(20));
+		ChainValidator<String> fieldPassword2=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(20));
+		ChainValidator<String> fieldEmail=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(20));
+		
+		Validator.add(fieldUsername).add(fieldPassword1).add(fieldPassword2).add(fieldEmail);
+		
+		fieldUsername.set(username);
+		fieldPassword1.set(password1);
+		fieldPassword2.set(password2);
+		fieldEmail.set(emailAdress);
+		
+		return Validator;
+
 	}
 }
