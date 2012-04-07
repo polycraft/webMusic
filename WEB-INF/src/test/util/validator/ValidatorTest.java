@@ -33,12 +33,6 @@ public class ValidatorTest extends TestCase {
 		
 		validator.setValue("");
 		assertFalse(validator.validate());
-		
-		try {
-			validator.validate(null);
-			fail("Exception attendu");
-		}
-		catch (Exception e) {}
 	}
 
 	@Test
