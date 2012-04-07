@@ -2,6 +2,7 @@ package controller.register;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,26 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Language;
+import model.User;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import util.HibernateUtil;
 import util.validator.BlankValidator;
 import util.validator.ChainValidator;
 import util.validator.FormValidator;
 import util.validator.LengthMaxValidator;
-import model.Language;
-import model.User;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.servlet.*;
-import javax.servlet.http.*;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 
 public class Register extends HttpServlet {
 
@@ -40,7 +32,7 @@ public class Register extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		// Creation de notre objet Session grace à notre HibernateUtil
+		// Creation de notre objet Session grace ï¿½ notre HibernateUtil
 		session = HibernateUtil.currentSession();
 
 		List<Language> languages = session.createQuery("from Language").list();
@@ -60,7 +52,7 @@ public class Register extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
-		//Recupération des variables//
+		//Recupï¿½ration des variables//
 		String username = request.getParameter("username");
 		String password1 = request.getParameter("password1");
 		String password2 = request.getParameter("password2");
@@ -76,21 +68,21 @@ public class Register extends HttpServlet {
 					{
 						
 						
-						//Creation de notre objet Session grace à notre HibernateUtil  
+						//Creation de notre objet Session grace ï¿½ notre HibernateUtil  
 						session = HibernateUtil.currentSession();
 
 						//Ouverture de notre transaction avec Hibernate grace
 						// a la session 
 					     tx = session.beginTransaction();
 						// Ajout d'un utilisateur en utilisant notre bean User 
-						// préalablement configuré dans Hibernate 
+						// prï¿½alablement configurï¿½ dans Hibernate 
 					      User user = new User();
 					      user.setIdUser(null);
 					      user.setUsername(request.getParameter("username"));
 					      user.setPassword(request.getParameter("password1"));
 					      user.setEmailAdress(request.getParameter("emailAdress"));
 					      
-					    //recupération de la classe Language
+					    //recupï¿½ration de la classe Language
 					      Language language = (Language) session.get(Language.class, Integer.parseInt(request.getParameter("language")));
 					     user.setLanguage(language);
 					     
@@ -105,7 +97,7 @@ public class Register extends HttpServlet {
 					     
 					      
 					      
-						// On sauve, on renvoi, notre bean à la session Hibernate   
+						// On sauve, on renvoi, notre bean ï¿½ la session Hibernate   
 					      session.save(user);
 					      
 						// Nous commitons la transaction vers la base
@@ -113,7 +105,7 @@ public class Register extends HttpServlet {
 
 						//Enfin on ferme la session 
 					      HibernateUtil.closeSession();
-		                //Nous invoquons la méthode doGet avec les paramètres reçu par la méthode doPost
+		                //Nous invoquons la mï¿½thode doGet avec les paramï¿½tres reï¿½u par la mï¿½thode doPost
 				
 						error = false;
 						
@@ -143,7 +135,7 @@ public class Register extends HttpServlet {
 	
 	private FormValidator getValidator(String username,String password1,String password2, String emailAdress){
 		
-		//on vérifie que les champs username / password / emailAdress sont non vides et la taille < max
+		//on vï¿½rifie que les champs username / password / emailAdress sont non vides et la taille < max
 		FormValidator Validator=new FormValidator();		
 		ChainValidator<String> fieldUsername=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(10));
 		ChainValidator<String> fieldPassword1=new ChainValidator<String>().add(new BlankValidator()).add(new LengthMaxValidator(20));
