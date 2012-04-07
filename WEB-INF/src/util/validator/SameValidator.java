@@ -11,7 +11,7 @@ public class SameValidator extends SimpleValidator<String> {
 	}
 
 	public boolean valid() {
-		if(value.equals(value1)) {
+		if(!value.equals(value1)) {
 			error=new SameError();
 			return false;
 		}
