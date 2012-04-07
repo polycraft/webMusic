@@ -19,20 +19,16 @@ public class ChainValidator<T> extends Validator<T>{
 	 * Test tous les validateurs avec la valeur value
 	 */
 	protected boolean valid() {
-		try {
-			boolean isValid=true;
-			for(Validator<T> validator:validators)
-			{
-				//On vérifie si il y a une erreur
-				if(!validator.validate(value)) {
-					errors.add(validator.getError());
-					isValid=false;
-				}
-			}			
-			return isValid;
-		} catch (Exception e) {
-			return false;
-		}
+		boolean isValid=true;
+		for(Validator<T> validator:validators)
+		{
+			//On vérifie si il y a une erreur
+			if(!validator.validate(value)) {
+				errors.add(validator.getError());
+				isValid=false;
+			}
+		}			
+		return isValid;
 	}
 	
 	/*
@@ -62,10 +58,10 @@ public class ChainValidator<T> extends Validator<T>{
 	/*
 	 * Retourne la première erreurs
 	 */
-	public Error getError() throws Exception {
+	public Error getError() {
 		if(hasError())
 			return errors.get(0);
-		throw new Exception("No error");
+		return null;
 	}
 	
 	/*

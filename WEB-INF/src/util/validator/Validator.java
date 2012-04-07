@@ -7,14 +7,14 @@ public abstract class Validator<T> implements Errorable{
 	
 	protected abstract boolean valid();
 	
-	public boolean validate(T value) throws Exception {
+	public boolean validate(T value) {
 		this.value=value;
 		return this.validate();
 	}
 	
-	public boolean validate() throws Exception {
+	public boolean validate() {
 		if(value==null)
-			throw new Exception("Value not defined");
+			return false;
 		this.clearError();
 		return valid();
 	}
