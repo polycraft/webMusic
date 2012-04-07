@@ -3,19 +3,31 @@ package util.validator;
 import util.validator.error.SameError;
 
 public class SameValidator extends SimpleValidator<String> {
-	private String value1;
+	private String compareValue;
 	
-	public SameValidator(String value1) {
+	public SameValidator(String compareValue) {
 		super();
-		this.value1 = value1;
+		this.compareValue = compareValue;
+	}
+	
+	public SameValidator() {
+		super();
 	}
 
 	public boolean valid() {
-		if(!value.equals(value1)) {
+		if(compareValue==null || !value.equals(compareValue)) {
 			error=new SameError();
 			return false;
 		}
 		return true;
+	}
+
+	public String getCompareValue() {
+		return compareValue;
+	}
+
+	public void setCompareValue(String value) {
+		this.compareValue = value;
 	}
 	
 }
