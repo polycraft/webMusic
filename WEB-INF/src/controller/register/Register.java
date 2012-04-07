@@ -22,6 +22,7 @@ import util.validator.ChainValidator;
 import util.validator.FormValidator;
 import util.validator.LengthMaxValidator;
 
+@SuppressWarnings("serial")
 public class Register extends HttpServlet {
 
 	private Session session;
@@ -35,6 +36,7 @@ public class Register extends HttpServlet {
 		// Creation de notre objet Session grace � notre HibernateUtil
 		session = HibernateUtil.currentSession();
 
+		@SuppressWarnings("unchecked")
 		List<Language> languages = session.createQuery("from Language").list();
 
 		HibernateUtil.closeSession();

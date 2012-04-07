@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+@SuppressWarnings("serial")
 public class Home extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
