@@ -56,7 +56,7 @@ public class Register extends HttpServlet {
 		post=true;
 		form.setRequest(request);
 		
-		if (form.validate()) {
+		if (form.validate()) {System.out.println("good");
 			session = HibernateUtil.currentSession();
 			tx = session.beginTransaction();
 			
@@ -74,7 +74,7 @@ public class Register extends HttpServlet {
 			RequestDispatcher dispatch = request
 					.getRequestDispatcher("WEB-INF/src/view/register/register_valid.jsp");
 			dispatch.forward(request, response);
-		} else {
+		} else {System.out.println(form.get("firstname").hasError()+" "+form.get("language").hasError());
 			doGet(request, response);
 		}
 

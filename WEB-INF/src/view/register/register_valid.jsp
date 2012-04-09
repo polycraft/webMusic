@@ -1,18 +1,12 @@
-
 <%@page import="model.Language"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>register jsp</title>
-</head>
-<body>
+<%@page import="util.form.user.RegisterForm"%>
+<%@page import="util.form.TemplateForm"%>
 
-	<p>registered !</p>  <a src='/'>Home</a>
+<jsp:include page="/WEB-INF/src/view/header.jsp">
+    <jsp:param name="title" value="Register"/>
+</jsp:include>
 
+<div class="alert alert-success">Vous êtes enregistrée</div>
 
-</body>
-</html>
+<jsp:include page="/WEB-INF/src/view/footer.jsp" />

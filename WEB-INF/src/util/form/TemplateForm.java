@@ -14,7 +14,7 @@ public class TemplateForm {
 	
 	public static String valueTextarea(Form form,String key) {
 		String value=form.getRequestvalue(key);
-		if(!form.get(key).hasError()) {
+		if(!form.get(key).hasError() && value!=null && !value.isEmpty()) {
 			return value;
 		}
 		return "";

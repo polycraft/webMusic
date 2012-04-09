@@ -18,10 +18,12 @@ public class RegisterForm extends Form {
 												   .add(new LengthMaxValidator(10)));
 		add("password",new ChainValidator<String>().add(new BlankValidator())
 												   .add(new LengthMaxValidator(20))
-												   .add(new SameValidator(getRequestvalue("password2"))));
+												   .add(new SameValidator(getRequestvalue("password_confirm"))));
+		add("password_confirm",new ChainValidator<String>().add(new BlankValidator())
+												   .add(new LengthMaxValidator(20)));
 		add("emailAdress",new ChainValidator<String>().add(new BlankValidator())
 												 	  .add(new LengthMaxValidator(20)));
-		add("language",new ChainValidator<String>());
+		add("language",new ChainValidator<String>());//TODO mettre un validateur
 		add("firstname",new ChainValidator<String>());
 		add("lastname",new ChainValidator<String>());
 		add("biography",new ChainValidator<String>());
