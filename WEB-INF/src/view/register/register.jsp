@@ -12,11 +12,14 @@
     <jsp:param name="title" value="Register"/>
 </jsp:include>
 
-	<form name="firstForm" action="register" method="post"
-style="width:50%;margin:auto;background-color:#c1d9fc;padding-bottom:15px;">
+	<form name="firstForm" action="register" method="post">
 				
-		<h2 style="text-align:center;color:white;background-color:#6683b1;">Formulaire Enregistrement User</h2>
-		<p style="text-align:center;">username : <input type="text" name="username" <%= TemplateForm.value(form, "username") %> />*</p>
+		<h2>Formulaire Enregistrement User</h2>
+		<p>
+			<label for="username">username : </label>
+			<input type="text" name="username" <%= TemplateForm.value(form, "username") %> />*
+			<span class="error">Test</span>
+		</p>
 		<p style="text-align:center;">password : <input type="password" name="password" />*</p>
 		<p style="text-align:center;">password (verif) : <input type="password" name="password2" />*</p>
 		<p style="text-align:center;">emailAdress : <input type="text" name="emailAdress" <%= TemplateForm.value(form, "emailAdress") %> />*</p>

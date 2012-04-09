@@ -1,23 +1,42 @@
+<%@page import="util.form.user.RegisterForm"%>
+<%@page import="util.form.TemplateForm"%>
+<%@page import="util.form.user.LoginForm"%>
+<% 
+	LoginForm form=(LoginForm)request.getAttribute("form");
+%>
+
 <jsp:include page="/WEB-INF/src/view/header.jsp">
     <jsp:param name="title" value="Login"/>
 </jsp:include>
 
-	<form name="loginForm" action="login" method="post"
-		style="width: 50%; margin: auto; background-color: #c1d9fc; padding-bottom: 15px;">
 
-		<h2
-			style="text-align: center; color: white; background-color: #6683b1;">Login</h2>
-		<% 
-			Boolean error = (Boolean)request.getAttribute("error");
-			String errorType = (String)request.getAttribute("errorType");
-			if(error){
-				out.println("<p style='text-align:center';>"+errorType+"</p>");
-			}
-		%>
-		<p style="text-align: center;">	username : <input type="text" name="username" /></p>
-		<p style="text-align: center;">	password : <input type="password" name="password" /></p>
-		<p style="text-align:center;width:50%;margin:auto;"><input type="submit" name="Valider" value="Valider"/></p>
 	
+	<form name="loginForm" action="login" method="post" class="form-horizontal">
+
+		<%= TemplateForm.globalError(form) %>
+		
+		<fieldset>
+			<legend>Login</legend>
+			<div class="control-group <%= TemplateForm.hasError(form.get("username")) %>">
+				<label for="username" class="control-label">Username</label>
+				<div class="controls">
+					<input type="text" id="username" name="username" />
+					<%= TemplateForm.fieldError(form.get("username")) %>
+				</div>
+			</div>
+			
+			<div class="control-group<%= TemplateForm.hasError(form.get("password")) %>">
+				<label for="password" class="control-label">Password</label>
+				<div class="controls">
+					<input type="password" id="password" name="password" />
+					<%= TemplateForm.fieldError(form.get("password")) %>
+				</div>
+			</div>
+			
+			<div class="form-actions">
+				<input class="btn" type="submit" name="Valider" value="Valider">
+			</div>
+		</fieldset>
 	</form>
 	
 <jsp:include page="/WEB-INF/src/view/footer.jsp" />
