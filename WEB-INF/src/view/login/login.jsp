@@ -1,12 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Login</title>
-</head>
-<body>
+<jsp:include page="/WEB-INF/src/view/header.jsp">
+    <jsp:param name="title" value="Login"/>
+</jsp:include>
+
 	<form name="loginForm" action="login" method="post"
 		style="width: 50%; margin: auto; background-color: #c1d9fc; padding-bottom: 15px;">
 
@@ -23,5 +18,6 @@
 		<p style="text-align: center;">	password : <input type="password" name="password" /></p>
 		<p style="text-align:center;width:50%;margin:auto;"><input type="submit" name="Valider" value="Valider"/></p>
 	
-</body>
-</html>
+	</form>
+	
+<jsp:include page="/WEB-INF/src/view/footer.jsp" />

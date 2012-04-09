@@ -3,19 +3,14 @@
 <%@page import="java.util.List"%>
 <%@page import="util.form.user.RegisterForm"%>
 <%@page import="util.form.TemplateForm"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <%
 	RegisterForm form=(RegisterForm)request.getAttribute("form");
 	List<Language> languages =  (List<Language>)request.getAttribute("languages");
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>register</title>
-</head>
-<body>
+
+<jsp:include page="/WEB-INF/src/view/header.jsp">
+    <jsp:param name="title" value="Register"/>
+</jsp:include>
 
 	<form name="firstForm" action="register" method="post"
 style="width:50%;margin:auto;background-color:#c1d9fc;padding-bottom:15px;">
@@ -47,6 +42,4 @@ style="width:50%;margin:auto;background-color:#c1d9fc;padding-bottom:15px;">
 		
 	</form>
 
-
-</body>
-</html>
+<jsp:include page="/WEB-INF/src/view/footer.jsp" />
