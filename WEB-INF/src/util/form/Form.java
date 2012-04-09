@@ -14,14 +14,18 @@ public abstract class Form {
 	private FormValidator form;
 	
 	protected abstract void configure();
+
+	public void setRequest(HttpServletRequest request) {
+			this.request = request;
+			this.validators=new HashMap<String, ChainValidator>();
+			form=new FormValidator();
+			this.configure();
+			this.associateValue();
+			System.out.println("trest");
+	}
 	
-	public Form(HttpServletRequest request) {
-		super();
-		this.request = request;
-		this.validators=new HashMap<String, ChainValidator>();
-		form=new FormValidator();
-		this.configure();
-		this.associateValue();
+	public boolean isInitialized() {
+		return request!=null;
 	}
 
 	protected void add(String name,ChainValidator validator) {
@@ -49,5 +53,17 @@ public abstract class Form {
 				validators.get(key).set(value);
 			}
 		}
+	}
+	
+	public String getValue(String key) {
+		return (String) validators.get(key).getValue();
+	}
+	
+	public void setValue(String key,Object value) {
+		validators.get(key).setValue(value);
+	}
+	
+	public ChainValidator get(String key) {
+		return validators.get(key);
 	}
 }
