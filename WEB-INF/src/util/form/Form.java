@@ -21,7 +21,6 @@ public abstract class Form {
 			form=new FormValidator();
 			this.configure();
 			this.associateValue();
-			System.out.println("trest");
 	}
 	
 	public boolean isInitialized() {
