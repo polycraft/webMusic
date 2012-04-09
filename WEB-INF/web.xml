@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app>
-
+<web-app xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<servlet>
-		<servlet-class>controller.home.Home</servlet-class>
 		<servlet-name>homeServlet</servlet-name>
+		<servlet-class>controller.home.Home</servlet-class>
 	</servlet>
-
 	<servlet>
-		<servlet-class>controller.register.Register</servlet-class>
 		<servlet-name>registerServlet</servlet-name>
+		<servlet-class>controller.register.Register</servlet-class>
 	</servlet>
-
 	<servlet>
-		<servlet-class>controller.login.Login</servlet-class>
 		<servlet-name>loginServlet</servlet-name>
+		<servlet-class>controller.login.Login</servlet-class>
 	</servlet>
-	
-	
 	<servlet>
+		<servlet-name>connected/disconnectServlet</servlet-name>
 		<servlet-class>controller.disconnect.Disconnect</servlet-class>
-		<servlet-name>disconnectServlet</servlet-name>
-	</servlet>	
-	
-
-
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>homeServlet</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/index</url-pattern>
 	</servlet-mapping>
-
-
-
 	<servlet-mapping>
 		<servlet-name>registerServlet</servlet-name>
 		<url-pattern>/register</url-pattern>
 	</servlet-mapping>
-	
 	<servlet-mapping>
 		<servlet-name>loginServlet</servlet-name>
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
-	
 	<servlet-mapping>
-		<servlet-name>disconnectServlet</servlet-name>
+		<servlet-name>connected/disconnectServlet</servlet-name>
 		<url-pattern>/disconnect</url-pattern>
 	</servlet-mapping>
 
+	<filter>
+		<filter-name>ConnectedFilter</filter-name>
+		<filter-class>util.ConnectedFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>ConnectedFilter</filter-name>
+		<servlet-name>connected/disconnectServlet</servlet-name>
+	</filter-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index</welcome-file>
+	</welcome-file-list>
 </web-app>

@@ -18,6 +18,6 @@ public class Disconnect extends HttpServlet {
 			session.setAttribute("idUser", null);
 			session.setAttribute("username", null);
 			
-			response.sendRedirect("");
+			response.sendRedirect("index");
 	}	
 }
