@@ -11,3 +11,7 @@ WEB-INF/lib/*
 .directory
 
 *~
+
+WEB-INF/tmp/*
+
+work
