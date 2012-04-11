@@ -1,20 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Import CSV</title>
-</head>
-<body>
-	<h1><p>Emettre un fichier (Upload)</p></h1>
+<jsp:include page="/WEB-INF/src/view/header.jsp">
+    <jsp:param name="title" value="Home"/>
+</jsp:include>
+
+	<h1><p>CSV file importation</p></h1>
       <form action="<%= request.getContextPath() + "/importcsv"%>" enctype="multipart/form-data" method="post">
-         <p>Emission du fichier:<input type="file" name="source" size="30"></p>
+         <p>File :<input  type="file" name="source" size="30"></p>
  
          <p>
-            <input type="submit" name="submitFichier" value="Annuler" title="Annuler l'émission">
-            <input type="submit" name="submitFichier" value="Emettre" title="Emettre le fichier vers le serveur">
+            <input class="btn btn-primary" type="submit" name="cancel" value="Cancel" title="Cancel Import">
+            <input class="btn btn-primary" type="submit" name="submitFichier" value="Import" title="Import">
          </p>
       </form>
-</body>
-</html>
+
+	<jsp:include page="/WEB-INF/src/view/footer.jsp" />
