@@ -4,6 +4,8 @@
 
 .tomcatplugin
 
+WEB-INF/classes/*
+
 WEB-INF/lib/*
 
 .settings
@@ -15,3 +17,4 @@ WEB-INF/lib/*
 WEB-INF/tmp/*
 
 work
+
