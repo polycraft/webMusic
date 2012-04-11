@@ -4,21 +4,18 @@ import model.User;
 
 import org.hibernate.Session;
 
-import util.validator.BlankValidator;
 import util.validator.ChainValidator;
 import util.validator.LengthMaxValidator;
 import util.validator.SameValidator;
 
-public class RegisterForm extends UserForm {
+public class UpdateForm extends UserForm {
 
 	protected void configure() {
 		super.configure();
-		add("password",new ChainValidator<String>().add(new BlankValidator())
-												   .add(new LengthMaxValidator(20))
+		add("password",new ChainValidator<String>().add(new LengthMaxValidator(20))
 												   .add(new SameValidator(getRequestvalue("password_confirm"))));
 		
-		add("password_confirm",new ChainValidator<String>().add(new BlankValidator())
-												   .add(new LengthMaxValidator(20)));
+		add("password_confirm",new ChainValidator<String>().add(new LengthMaxValidator(20)));
 	}
 	
 	public void fillUser(User user, Session session) {

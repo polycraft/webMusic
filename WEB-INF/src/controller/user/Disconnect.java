@@ -1,4 +1,4 @@
-package controller.disconnect;
+package controller.user;
 
 import java.io.IOException;
 
