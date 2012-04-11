@@ -1,11 +1,9 @@
 package controller.importCSV;
 
-import java.awt.image.TileObserver;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -13,7 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale.Category;
 import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
@@ -22,15 +19,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Language;
 import model.Record;
 import model.Style;
 import model.Track;
-import model.User;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.FileUpload;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -38,7 +31,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import util.HibernateUtil;
-
 import au.com.bytecode.opencsv.CSVReader;
 
 
@@ -80,9 +72,9 @@ public class ImportCSV extends HttpServlet {
 		// Set upload parameters
 		int yourMaxMemorySize = 512 * 1024 * 8; // en bytes
 		int yourMaxRequestSize = 1024 * 1024 * 8;
-		String yourTempDirectory = this.relativePath+"/WEB-INF/tmp/"; // un répertoire ou tomcat
+		String yourTempDirectory = this.relativePath+"/WEB-INF/tmp/"; // un rï¿½pertoire ou tomcat
 																											// a
-		// le droit d'écrire
+		// le droit d'ï¿½crire
  
 		fileItemFactory.setSizeThreshold( yourMaxMemorySize );
  
@@ -90,7 +82,7 @@ public class ImportCSV extends HttpServlet {
 		upload.setSizeMax( yourMaxRequestSize );
 		// upload.setRepositoryPath(yourTempDirectory);
  
-		// Parse the request -on recupère tous les champs du formulaire
+		// Parse the request -on recupï¿½re tous les champs du formulaire
 		List items;
 		try
 		{
@@ -171,8 +163,8 @@ public class ImportCSV extends HttpServlet {
 			    	tx = sessionHibernate.beginTransaction();
 					
 				    if(nextLine[0].toString().equals("record")){
-				    	//On regarde si le record existe déja ou non
-				    	//connexion à la table est récuparation des resultats avec Title et matrix identique
+				    	//On regarde si le record existe dï¿½ja ou non
+				    	//connexion ï¿½ la table est rï¿½cuparation des resultats avec Title et matrix identique
 				    	String title = nextLine[2].toString();
 				    	String matrix = nextLine[4].toString();
 						List<Record> doublonRecord=  (List<Record>) sessionHibernate.createQuery("from Record record where record.title = :title and record.matrix = :matrix").setParameter("title", title).setParameter("matrix",matrix).list();
@@ -204,37 +196,37 @@ public class ImportCSV extends HttpServlet {
 						
 				    }
 				    if(nextLine[0].toString().equals("track")){
-				    	//On regard si il existe le record ârent à la track
-				    	//connexion à la table est récuparation des resultats avec Title et matrix de son record identique
+				    	//On regard si il existe le record ï¿½rent ï¿½ la track
+				    	//connexion ï¿½ la table est rï¿½cuparation des resultats avec Title et matrix de son record identique
 				    	String matrix = nextLine[1].toString();				    	
 				    	String title = nextLine[3].toString();				    	
 						List<Record> record=  (List<Record>) sessionHibernate.createQuery("from Record record where record.matrix = :matrix").setParameter("matrix",matrix).list();
-						//on regarde si le Record Parent existe déja dans la base de donnée
+						//on regarde si le Record Parent existe dï¿½ja dans la base de donnï¿½e
 						if(record.size()>=1){
 							//Parent existant => ok pour l'enregistrement
 							System.out.println("parent existe");
 							
-							//On regarde si la track existe déja ou non
+							//On regarde si la track existe dï¿½ja ou non
 							List<Track> doublonTrack=  (List<Track>) sessionHibernate.createQuery("from Track track where track.title = :titleTrack").setParameter("titleTrack",title).list();
 							//List<Track> doublonTrack=  (List<Track>) sessionHibernate.createQuery("from Track").list();
 							
 							if(doublonTrack.size()>=1){
-								//la track existe déja
+								//la track existe dï¿½ja
 								System.out.println("track existante");
-								//Mais elle peut être ajoutée à un nouvel album
-								//on regarde si elle appartient pas déja à l'album concerné
+								//Mais elle peut ï¿½tre ajoutï¿½e ï¿½ un nouvel album
+								//on regarde si elle appartient pas dï¿½ja ï¿½ l'album concernï¿½
 								Set<Track> tracks = record.get(0).getTracks();
 								boolean alreadyExist = false;
 								for(Track temp : tracks){
 									if(temp.equals(doublonTrack.get(0))){
-										System.out.println("déja dans le record");
+										System.out.println("dï¿½ja dans le record");
 										alreadyExist = true;
 									}
 								}
 								
 								if(!alreadyExist){
 									//si track non dans record on ajoute
-									System.out.println("track ajouté au nouveau record");
+									System.out.println("track ajoutï¿½ au nouveau record");
 									Set<Track> tracks1 = record.get(0).getTracks();
 									tracks1.add(doublonTrack.get(0));
 									record.get(0).setTracks(tracks1);
@@ -286,7 +278,7 @@ public class ImportCSV extends HttpServlet {
 			    }
 			
 				csvReader.close();
-				//On détruit le fichier tempo
+				//On dï¿½truit le fichier tempo
 				File uploadedFile = new File( this.fileUploaded );
 				uploadedFile.delete();
 				
