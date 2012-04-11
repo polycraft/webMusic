@@ -1,6 +1,6 @@
 package model;
 
-// Generated 27 mars 2012 19:24:38 by Hibernate Tools 3.4.0.CR1
+// Generated 8 avr. 2012 19:54:58 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -13,6 +13,7 @@ public class Track implements java.io.Serializable {
 
 	private Integer idTrack;
 	private Style style;
+	private String title;
 	private String rythm;
 	private int label;
 	private int playingTime;
@@ -24,19 +25,21 @@ public class Track implements java.io.Serializable {
 	public Track() {
 	}
 
-	public Track(Style style, String rythm, int label, int playingTime,
-			Date releaseDate) {
+	public Track(Style style, String title, String rythm, int label,
+			int playingTime, Date releaseDate) {
 		this.style = style;
+		this.title = title;
 		this.rythm = rythm;
 		this.label = label;
 		this.playingTime = playingTime;
 		this.releaseDate = releaseDate;
 	}
 
-	public Track(Style style, String rythm, int label, int playingTime,
-			Date releaseDate, Set<Record> records,
+	public Track(Style style, String title, String rythm, int label,
+			int playingTime, Date releaseDate, Set<Record> records,
 			Set<LinkTrackPerson> linkTrackPersons) {
 		this.style = style;
+		this.title = title;
 		this.rythm = rythm;
 		this.label = label;
 		this.playingTime = playingTime;
@@ -59,6 +62,14 @@ public class Track implements java.io.Serializable {
 
 	public void setStyle(Style style) {
 		this.style = style;
+	}
+
+	public String getTitle() {
+		return this.title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getRythm() {
