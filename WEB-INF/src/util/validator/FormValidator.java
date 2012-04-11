@@ -8,8 +8,6 @@ import util.validator.error.Error;
 @SuppressWarnings("rawtypes")
 public class FormValidator extends SimpleValidator<List<ChainValidator>> {
 
-	public Error error;
-
 	public FormValidator() {
 		value = new ArrayList<ChainValidator>();
 	}
