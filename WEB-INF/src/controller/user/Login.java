@@ -1,4 +1,4 @@
-package controller.login;
+package controller.user;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -53,7 +53,7 @@ public class Login extends HttpServlet {
 
 		request.setAttribute("form", form);
 		RequestDispatcher dispatch = request
-				.getRequestDispatcher("WEB-INF/src/view/login/login.jsp");
+				.getRequestDispatcher("WEB-INF/src/view/user/login.jsp");
 		dispatch.forward(request, response);
 
 	}

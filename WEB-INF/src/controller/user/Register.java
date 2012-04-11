@@ -1,4 +1,4 @@
-package controller.register;
+package controller.user;
 
 import java.io.IOException;
 
@@ -47,7 +47,7 @@ public class Register extends HttpServlet {
 
 		request.setAttribute("form", form);
 		RequestDispatcher dispatch = request
-				.getRequestDispatcher("WEB-INF/src/view/register/register.jsp");
+				.getRequestDispatcher("WEB-INF/src/view/user/register.jsp");
 		dispatch.forward(request, response);
 	}
 
@@ -72,7 +72,7 @@ public class Register extends HttpServlet {
 			HibernateUtil.closeSession();
 
 			RequestDispatcher dispatch = request
-					.getRequestDispatcher("WEB-INF/src/view/register/register_valid.jsp");
+					.getRequestDispatcher("WEB-INF/src/view/user/register_valid.jsp");
 			dispatch.forward(request, response);
 		} else {System.out.println(form.get("firstname").hasError()+" "+form.get("language").hasError());
 			doGet(request, response);

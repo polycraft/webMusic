@@ -6,15 +6,15 @@
 	</servlet>
 	<servlet>
 		<servlet-name>registerServlet</servlet-name>
-		<servlet-class>controller.register.Register</servlet-class>
+		<servlet-class>controller.user.Register</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>loginServlet</servlet-name>
-		<servlet-class>controller.login.Login</servlet-class>
+		<servlet-class>controller.user.Login</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>connected/disconnectServlet</servlet-name>
-		<servlet-class>controller.disconnect.Disconnect</servlet-class>
+		<servlet-class>controller.user.Disconnect</servlet-class>
 	</servlet>	
 	
 	<servlet>
