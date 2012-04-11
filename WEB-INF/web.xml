@@ -22,14 +22,17 @@
 		<servlet-name>disconnectServlet</servlet-name>
 	</servlet>	
 	
+	<servlet>
+		<servlet-class>controller.importCSV.ImportCSV</servlet-class>
+		<servlet-name>importServlet</servlet-name>
+	</servlet>	
+	
 
 
 	<servlet-mapping>
 		<servlet-name>homeServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
-
 
 	<servlet-mapping>
 		<servlet-name>registerServlet</servlet-name>
@@ -44,6 +47,11 @@
 	<servlet-mapping>
 		<servlet-name>disconnectServlet</servlet-name>
 		<url-pattern>/disconnect</url-pattern>
+	</servlet-mapping>
+	
+		<servlet-mapping>
+		<servlet-name>importServlet</servlet-name>
+		<url-pattern>/importcsv</url-pattern>
 	</servlet-mapping>
 
 </web-app>
