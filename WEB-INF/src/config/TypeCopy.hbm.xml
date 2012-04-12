@@ -3,19 +3,19 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 12 avr. 2012 04:38:19 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="model.Language" table="language" catalog="projetweb">
-        <id name="idLanguage" type="java.lang.Integer">
-            <column name="id_language" />
+    <class name="model.TypeCopy" table="type_copy" catalog="projetweb">
+        <id name="idTypeCopy" type="java.lang.Integer">
+            <column name="id_type_copy" />
             <generator class="identity" />
         </id>
         <property name="name" type="string">
-            <column name="name" length="100" not-null="true" />
+            <column name="name" length="10" not-null="true" />
         </property>
-        <set name="users" table="user" inverse="true" lazy="true" fetch="select">
+        <set name="copies" table="copy" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="id_language" not-null="true" />
+                <column name="id_type_copy" not-null="true" />
             </key>
-            <one-to-many class="model.User" />
+            <one-to-many class="model.Copy" />
         </set>
     </class>
 </hibernate-mapping>

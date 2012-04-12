@@ -1,6 +1,6 @@
 package model;
 
-// Generated 12 avr. 2012 03:43:20 by Hibernate Tools 3.4.0.CR1
+// Generated 12 avr. 2012 04:38:19 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,9 +17,9 @@ public class Record implements java.io.Serializable {
 	private String matrix;
 	private String pressInfo;
 	private Set<Track> tracks = new HashSet<Track>(0);
+	private Set<Copy> copies = new HashSet<Copy>(0);
 	private Set<LinkRecordPerson> linkRecordPersons = new HashSet<LinkRecordPerson>(
 			0);
-	private Set<Copy> copies = new HashSet<Copy>(0);
 
 	public Record() {
 	}
@@ -34,16 +34,16 @@ public class Record implements java.io.Serializable {
 	}
 
 	public Record(Category category, String title, int width, String matrix,
-			String pressInfo, Set<Track> tracks,
-			Set<LinkRecordPerson> linkRecordPersons, Set<Copy> copies) {
+			String pressInfo, Set<Track> tracks, Set<Copy> copies,
+			Set<LinkRecordPerson> linkRecordPersons) {
 		this.category = category;
 		this.title = title;
 		this.width = width;
 		this.matrix = matrix;
 		this.pressInfo = pressInfo;
 		this.tracks = tracks;
-		this.linkRecordPersons = linkRecordPersons;
 		this.copies = copies;
+		this.linkRecordPersons = linkRecordPersons;
 	}
 
 	public Integer getIdRecord() {
@@ -102,20 +102,20 @@ public class Record implements java.io.Serializable {
 		this.tracks = tracks;
 	}
 
-	public Set<LinkRecordPerson> getLinkRecordPersons() {
-		return this.linkRecordPersons;
-	}
-
-	public void setLinkRecordPersons(Set<LinkRecordPerson> linkRecordPersons) {
-		this.linkRecordPersons = linkRecordPersons;
-	}
-
 	public Set<Copy> getCopies() {
 		return this.copies;
 	}
 
 	public void setCopies(Set<Copy> copies) {
 		this.copies = copies;
+	}
+
+	public Set<LinkRecordPerson> getLinkRecordPersons() {
+		return this.linkRecordPersons;
+	}
+
+	public void setLinkRecordPersons(Set<LinkRecordPerson> linkRecordPersons) {
+		this.linkRecordPersons = linkRecordPersons;
 	}
 
 }
