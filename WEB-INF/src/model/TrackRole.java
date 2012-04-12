@@ -1,6 +1,6 @@
 package model;
 
-// Generated 12 avr. 2012 14:23:42 by Hibernate Tools 3.4.0.CR1
+// Generated 12 avr. 2012 20:44:23 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,8 +12,7 @@ public class TrackRole implements java.io.Serializable {
 
 	private Integer idTrackRole;
 	private String name;
-	private Set<LinkTrackPerson> linkTrackPersons = new HashSet<LinkTrackPerson>(
-			0);
+	private Set<Person> persons = new HashSet<Person>(0);
 
 	public TrackRole() {
 	}
@@ -22,9 +21,9 @@ public class TrackRole implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public TrackRole(String name, Set<LinkTrackPerson> linkTrackPersons) {
+	public TrackRole(String name, Set<Person> persons) {
 		this.name = name;
-		this.linkTrackPersons = linkTrackPersons;
+		this.persons = persons;
 	}
 
 	public Integer getIdTrackRole() {
@@ -43,12 +42,12 @@ public class TrackRole implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public Set<LinkTrackPerson> getLinkTrackPersons() {
-		return this.linkTrackPersons;
+	public Set<Person> getPersons() {
+		return this.persons;
 	}
 
-	public void setLinkTrackPersons(Set<LinkTrackPerson> linkTrackPersons) {
-		this.linkTrackPersons = linkTrackPersons;
+	public void setPersons(Set<Person> persons) {
+		this.persons = persons;
 	}
 
 }

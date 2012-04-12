@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 12 avr. 2012 14:23:42 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 12 avr. 2012 20:44:24 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="model.TrackRole" table="track_role" catalog="projetweb">
         <id name="idTrackRole" type="java.lang.Integer">
@@ -11,11 +11,11 @@
         <property name="name" type="string">
             <column name="name" length="100" not-null="true" />
         </property>
-        <set name="linkTrackPersons" table="link_track_person" inverse="true" lazy="true" fetch="select">
+        <set name="persons" table="person" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="id_track_role" not-null="true" />
             </key>
-            <one-to-many class="model.LinkTrackPerson" />
+            <one-to-many class="model.Person" />
         </set>
     </class>
 </hibernate-mapping>

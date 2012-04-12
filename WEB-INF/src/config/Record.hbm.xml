@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 12 avr. 2012 14:23:42 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 12 avr. 2012 20:44:24 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="model.Record" table="record" catalog="projetweb">
         <id name="idRecord" type="java.lang.Integer">
@@ -13,6 +13,12 @@
         </many-to-one>
         <property name="title" type="string">
             <column name="title" length="100" not-null="true" />
+        </property>
+        <property name="artist" type="string">
+            <column name="artist" length="10" not-null="true" />
+        </property>
+        <property name="producer" type="string">
+            <column name="producer" length="10" not-null="true" />
         </property>
         <property name="width" type="int">
             <column name="width" not-null="true" />
@@ -44,12 +50,6 @@
                 <column name="id_record" not-null="true" />
             </key>
             <one-to-many class="model.Copy" />
-        </set>
-        <set name="linkRecordPersons" table="link_record_person" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_record" not-null="true" />
-            </key>
-            <one-to-many class="model.LinkRecordPerson" />
         </set>
     </class>
 </hibernate-mapping>

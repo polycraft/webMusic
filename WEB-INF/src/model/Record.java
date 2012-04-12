@@ -1,6 +1,6 @@
 package model;
 
-// Generated 12 avr. 2012 14:23:42 by Hibernate Tools 3.4.0.CR1
+// Generated 12 avr. 2012 20:44:23 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,39 +13,42 @@ public class Record implements java.io.Serializable {
 	private Integer idRecord;
 	private Category category;
 	private String title;
+	private String artist;
+	private String producer;
 	private int width;
 	private String matrix;
 	private String pressInfo;
 	private Set<User> users = new HashSet<User>(0);
 	private Set<Track> tracks = new HashSet<Track>(0);
 	private Set<Copy> copies = new HashSet<Copy>(0);
-	private Set<LinkRecordPerson> linkRecordPersons = new HashSet<LinkRecordPerson>(
-			0);
 
 	public Record() {
 	}
 
-	public Record(Category category, String title, int width, String matrix,
-			String pressInfo) {
+	public Record(Category category, String title, String artist,
+			String producer, int width, String matrix, String pressInfo) {
 		this.category = category;
 		this.title = title;
+		this.artist = artist;
+		this.producer = producer;
 		this.width = width;
 		this.matrix = matrix;
 		this.pressInfo = pressInfo;
 	}
 
-	public Record(Category category, String title, int width, String matrix,
-			String pressInfo, Set<User> users, Set<Track> tracks,
-			Set<Copy> copies, Set<LinkRecordPerson> linkRecordPersons) {
+	public Record(Category category, String title, String artist,
+			String producer, int width, String matrix, String pressInfo,
+			Set<User> users, Set<Track> tracks, Set<Copy> copies) {
 		this.category = category;
 		this.title = title;
+		this.artist = artist;
+		this.producer = producer;
 		this.width = width;
 		this.matrix = matrix;
 		this.pressInfo = pressInfo;
 		this.users = users;
 		this.tracks = tracks;
 		this.copies = copies;
-		this.linkRecordPersons = linkRecordPersons;
 	}
 
 	public Integer getIdRecord() {
@@ -70,6 +73,22 @@ public class Record implements java.io.Serializable {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getArtist() {
+		return this.artist;
+	}
+
+	public void setArtist(String artist) {
+		this.artist = artist;
+	}
+
+	public String getProducer() {
+		return this.producer;
+	}
+
+	public void setProducer(String producer) {
+		this.producer = producer;
 	}
 
 	public int getWidth() {
@@ -118,14 +137,6 @@ public class Record implements java.io.Serializable {
 
 	public void setCopies(Set<Copy> copies) {
 		this.copies = copies;
-	}
-
-	public Set<LinkRecordPerson> getLinkRecordPersons() {
-		return this.linkRecordPersons;
-	}
-
-	public void setLinkRecordPersons(Set<LinkRecordPerson> linkRecordPersons) {
-		this.linkRecordPersons = linkRecordPersons;
 	}
 
 }
