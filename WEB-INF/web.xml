@@ -41,6 +41,21 @@
 		<servlet-name>userAdminListUser</servlet-name>
 		<servlet-class>controller.user_admin.ListUser</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>userAdminAdd</servlet-name>
+		<servlet-class>controller.user_admin.Add</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>userAdminUpdate</servlet-name>
+		<servlet-class>controller.user_admin.Update</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>userAdminDelete</servlet-name>
+		<servlet-class>controller.user_admin.Delete</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>homeServlet</servlet-name>
@@ -82,6 +97,21 @@
 	<servlet-mapping>
 		<servlet-name>userAdminListUser</servlet-name>
 		<url-pattern>/user-admin-list</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>userAdminAdd</servlet-name>
+		<url-pattern>/user-admin-add</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>userAdminUpdate</servlet-name>
+		<url-pattern>/user-admin-update</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>userAdminDelete</servlet-name>
+		<url-pattern>/user-admin-delete</url-pattern>
 	</servlet-mapping>
 
 	<filter>

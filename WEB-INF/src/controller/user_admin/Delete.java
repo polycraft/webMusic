@@ -29,7 +29,7 @@ public class Delete extends HttpServlet {
 		sessionHibernate = HibernateUtil.currentSession();
 		tx = sessionHibernate.beginTransaction();
 		
-		User user = (User)sessionHibernate.load(User.class, new Integer(request.getAttribute("idUser").toString()));
+		User user = (User)sessionHibernate.load(User.class, new Integer(request.getParameter("id")));
 		
 		sessionHibernate.delete(user);
 

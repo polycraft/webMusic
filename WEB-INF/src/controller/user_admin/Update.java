@@ -35,8 +35,7 @@ public class Update extends HttpServlet {
 
 		// Creation de notre objet Session grace � notre HibernateUtil
 		sessionHibernate = HibernateUtil.currentSession();
-		
-		User user = (User)sessionHibernate.load(User.class, new Integer(request.getAttribute("idUser").toString()));
+		User user = (User)sessionHibernate.load(User.class, new Integer(request.getParameter("id")));
 		
 		form.fillForm(user);
 
@@ -53,12 +52,12 @@ public class Update extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		if (form.validate()) {System.out.println("good");
+		if (form.validate()) {
 			sessionHibernate = HibernateUtil.currentSession();
 			tx = sessionHibernate.beginTransaction();
 			
 			//Création de l'utilisateur
-			User user = (User)sessionHibernate.load(User.class, new Integer(request.getAttribute("idUser").toString()));
+			User user = (User)sessionHibernate.load(User.class, new Integer(request.getParameter("id")));
 			
 			form.fillUser(user,sessionHibernate);
 

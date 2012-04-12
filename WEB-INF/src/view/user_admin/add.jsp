@@ -17,4 +17,6 @@
     <jsp:param name="formSubmit" value="New"/>
 </jsp:include>
 
+<a href="user-admin-list"><i class="icon-list-alt"></i>Return to list</a>
+
 <jsp:include page="/WEB-INF/src/view/footer.jsp" />
