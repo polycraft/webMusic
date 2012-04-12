@@ -20,7 +20,7 @@ public class UpdateForm extends UserForm {
 	
 	public void fillUser(User user, Session session) {
 		super.fillUser(user,session);
-		user.setPassword(getRequestvalue("password"));
+		if(!getRequestvalue("password").isEmpty())
+			user.setPassword(getRequestvalue("password"));
 	}
-
 }
