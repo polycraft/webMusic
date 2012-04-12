@@ -5,7 +5,7 @@ import util.validator.error.Error;
 
 public class TemplateForm {
 	public static String value(Form form,String key) {
-		String value=form.getRequestvalue(key);
+		String value=form.getValue(key);
 		if(!form.get(key).hasError() && value!=null && !value.isEmpty()) {
 			return "value=\""+value+"\"";
 		}
@@ -13,7 +13,7 @@ public class TemplateForm {
 	}
 	
 	public static String valueTextarea(Form form,String key) {
-		String value=form.getRequestvalue(key);
+		String value=form.getValue(key);
 		if(!form.get(key).hasError() && value!=null && !value.isEmpty()) {
 			return value;
 		}
@@ -21,7 +21,7 @@ public class TemplateForm {
 	}
 	
 	public static String selected(Form form,String key,Object value) {
-		String valueTmp=form.getRequestvalue(key);
+		String valueTmp=form.getValue(key);
 		
 		if(!form.get(key).hasError() && valueTmp!=null && valueTmp.equals(value.toString())) {
 			return "selected=\"selected\"";

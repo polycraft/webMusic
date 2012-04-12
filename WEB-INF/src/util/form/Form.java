@@ -60,6 +60,12 @@ public abstract class Form implements Errorable {
 		}
 	}
 	
+	public void associateModel(String field,String value) {
+		
+		if(validators.get(field).getValue()==null)
+			validators.get(field).set(value);
+	}
+	
 	public String getValue(String key) {
 		return (String) validators.get(key).getValue();
 	}
