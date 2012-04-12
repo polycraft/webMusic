@@ -15,6 +15,7 @@ import org.hibernate.Transaction;
 
 import util.HibernateUtil;
 import util.form.user.RegisterForm;
+import util.form.user.UpdateForm;
 
 @SuppressWarnings("serial")
 public class Register extends HttpServlet {
@@ -23,20 +24,14 @@ public class Register extends HttpServlet {
 	private Transaction tx;
 
 	private RegisterForm form;
-	private boolean post=false;
 
-	public Register() {
-		super();
+	protected void before(HttpServletRequest request, HttpServletResponse response) {
 		this.form = new RegisterForm();
+		form.setRequest(request);
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		
-		if(!post) {
-			form.setRequest(request);
-			post=false;
-		}
 
 		// Creation de notre objet Session grace � notre HibernateUtil
 		session = HibernateUtil.currentSession();
@@ -53,10 +48,8 @@ public class Register extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		post=true;
-		form.setRequest(request);
 		
-		if (form.validate()) {System.out.println("good");
+		if (form.validate()) {
 			session = HibernateUtil.currentSession();
 			tx = session.beginTransaction();
 			
@@ -74,7 +67,7 @@ public class Register extends HttpServlet {
 			RequestDispatcher dispatch = request
 					.getRequestDispatcher("WEB-INF/src/view/user/register_valid.jsp");
 			dispatch.forward(request, response);
-		} else {System.out.println(form.get("firstname").hasError()+" "+form.get("language").hasError());
+		} else {
 			doGet(request, response);
 		}
 
