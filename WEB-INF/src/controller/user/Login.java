@@ -24,15 +24,7 @@ import util.validator.error.Error;
 
 public class Login extends HttpServlet {
 
-	private boolean error = false;
-	private String errorType;
 	private LoginForm form;
-	private boolean post = false;
-
-	public Login() {
-		super();
-		
-	}
 	
 	protected void before(HttpServletRequest request, HttpServletResponse response) {
 		this.form = new LoginForm();
