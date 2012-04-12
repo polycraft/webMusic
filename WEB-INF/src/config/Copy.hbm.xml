@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 12 avr. 2012 06:06:53 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 12 avr. 2012 14:23:42 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="model.Copy" table="copy" catalog="projetweb">
         <id name="idCopy" type="java.lang.Integer">
             <column name="id_copy" />
             <generator class="identity" />
         </id>
+        <many-to-one name="copyCondition" class="model.CopyCondition" fetch="select">
+            <column name="id_condition" not-null="true" />
+        </many-to-one>
         <many-to-one name="typeCopy" class="model.TypeCopy" fetch="select">
             <column name="id_type_copy" not-null="true" />
         </many-to-one>
@@ -17,8 +20,5 @@
         <many-to-one name="record" class="model.Record" fetch="select">
             <column name="id_record" not-null="true" />
         </many-to-one>
-        <property name="condition" type="string">
-            <column name="condition" length="100" not-null="true" />
-        </property>
     </class>
 </hibernate-mapping>
