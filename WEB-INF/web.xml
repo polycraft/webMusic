@@ -27,6 +27,11 @@
 		<servlet-name>importServlet</servlet-name>
 	</servlet>	
 	
+	<servlet>
+		<servlet-class>controller.library.Library</servlet-class>
+		<servlet-name>libraryServlet</servlet-name>
+	</servlet>
+	
 
 
 	<servlet-mapping>
@@ -54,6 +59,11 @@
 		<servlet-mapping>
 		<servlet-name>importServlet</servlet-name>
 		<url-pattern>/importcsv</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>libraryServlet</servlet-name>
+		<url-pattern>/library</url-pattern>
 	</servlet-mapping>
 
 	<filter>

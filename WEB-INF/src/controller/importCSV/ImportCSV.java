@@ -58,9 +58,18 @@ public class ImportCSV extends HttpServlet {
 
 	public void doPost(HttpServletRequest request,HttpServletResponse response)throws IOException, ServletException
 	{
+
+		
+		//Si action Cancel :
+		String action = (String) request.getAttribute("cancel");
+		System.out.println(request.toString());
+		if(action.equals("Cancel")){
+			response.sendRedirect("");
+		}
+		
+		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		
 		System.out.println( "Upload" );
  
 		
