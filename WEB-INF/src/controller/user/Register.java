@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,8 +13,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import util.HibernateUtil;
+import util.HttpServlet.HttpServlet;
 import util.form.user.RegisterForm;
-import util.form.user.UpdateForm;
 
 @SuppressWarnings("serial")
 public class Register extends HttpServlet {
