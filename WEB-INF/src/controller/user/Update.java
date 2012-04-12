@@ -35,6 +35,11 @@ public class Update extends HttpServlet {
 
 		// Creation de notre objet Session grace � notre HibernateUtil
 		sessionHibernate = HibernateUtil.currentSession();
+		
+		HttpSession session = request.getSession();
+		User user = (User)sessionHibernate.load(User.class, new Integer(session.getAttribute("idUser").toString()));
+		
+		form.fillForm(user);
 
 		request.setAttribute("languages", sessionHibernate.createQuery("from Language").list());
 
