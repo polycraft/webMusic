@@ -43,7 +43,6 @@
 	</servlet>
 	
 	<servlet>
-<<<<<<< HEAD
 		<servlet-name>flagRecordServlet</servlet-name>
 		<servlet-class>controller.library.FlagRecord</servlet-class>
 	</servlet>
@@ -56,7 +55,9 @@
 	<servlet>
 		<servlet-name>ownRecordServlet</servlet-name>
 		<servlet-class>controller.library.OwnRecord</servlet-class>
-=======
+	</servlet>
+
+	<servlet>
 		<servlet-name>userAdminAdd</servlet-name>
 		<servlet-class>controller.user_admin.Add</servlet-class>
 	</servlet>
@@ -69,7 +70,6 @@
 	<servlet>
 		<servlet-name>userAdminDelete</servlet-name>
 		<servlet-class>controller.user_admin.Delete</servlet-class>
->>>>>>> 4515831ac1853352fb48ac8937e946c9102290d1
 	</servlet>
 
 	<servlet-mapping>
@@ -115,7 +115,6 @@
 	</servlet-mapping>
 	
 	<servlet-mapping>
-<<<<<<< HEAD
 		<servlet-name>flagRecordServlet</servlet-name>
 		<url-pattern>/flag_record</url-pattern>
 	</servlet-mapping>
@@ -130,7 +129,8 @@
 		<url-pattern>/own_record</url-pattern>
 	</servlet-mapping>
 	
-=======
+	
+	<servlet-mapping>
 		<servlet-name>userAdminAdd</servlet-name>
 		<url-pattern>/user-admin-add</url-pattern>
 	</servlet-mapping>
@@ -145,7 +145,6 @@
 		<url-pattern>/user-admin-delete</url-pattern>
 	</servlet-mapping>
 
->>>>>>> 4515831ac1853352fb48ac8937e946c9102290d1
 	<filter>
 		<filter-name>ConnectedFilter</filter-name>
 		<filter-class>util.ConnectedFilter</filter-class>
