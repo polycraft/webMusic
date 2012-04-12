@@ -7,6 +7,8 @@
 <title><%=request.getParameter("title")%></title>
 <link href="public/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
+	<script type="text/javascript" src="public/js/jquery-1.7.2.min.js" ></script>
+	<script type="text/javascript" src="public/js/bootstrap.min.js" ></script>	
 </head>
 <body>
 	<div class="container-fluid">

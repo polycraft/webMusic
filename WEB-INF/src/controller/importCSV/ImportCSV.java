@@ -61,11 +61,11 @@ public class ImportCSV extends HttpServlet {
 
 		
 		//Si action Cancel :
-		String action = (String) request.getAttribute("cancel");
+		/*String action = (String) request.getAttribute("cancel");
 		System.out.println(request.toString());
 		if(action.equals("Cancel")){
 			response.sendRedirect("");
-		}
+		}*/
 		
 		
 		response.setContentType("text/html");
