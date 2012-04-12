@@ -3,7 +3,7 @@
 </jsp:include>
 
 	<h1>HOME</h1>
-	
+
 
 	
 	<jsp:include page="/WEB-INF/src/view/footer.jsp" />

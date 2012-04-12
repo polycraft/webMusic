@@ -56,6 +56,11 @@
 		<servlet-name>ownRecordServlet</servlet-name>
 		<servlet-class>controller.library.OwnRecord</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>unownRecordServlet</servlet-name>
+		<servlet-class>controller.library.UnOwnRecord</servlet-class>
+	</servlet>
 
 	<servlet>
 		<servlet-name>userAdminAdd</servlet-name>
@@ -75,6 +80,16 @@
 	<servlet>
 		<servlet-name>search</servlet-name>
 		<servlet-class>controller.search.Search</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>detailRecordServlet</servlet-name>
+		<servlet-class>controller.library.RecordDetails</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>detailTrackServlet</servlet-name>
+		<servlet-class>controller.library.TrackDetails</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -134,6 +149,11 @@
 		<url-pattern>/own_record</url-pattern>
 	</servlet-mapping>
 	
+		<servlet-mapping>
+		<servlet-name>unownRecordServlet</servlet-name>
+		<url-pattern>/unown_record</url-pattern>
+	</servlet-mapping>
+	
 	
 	<servlet-mapping>
 		<servlet-name>userAdminAdd</servlet-name>
@@ -153,6 +173,16 @@
 	<servlet-mapping>
 		<servlet-name>search</servlet-name>
 		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>detailRecordServlet</servlet-name>
+		<url-pattern>/record_details</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>detailTrackServlet</servlet-name>
+		<url-pattern>/track_details</url-pattern>
 	</servlet-mapping>
 
 	<filter>

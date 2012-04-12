@@ -16,24 +16,26 @@
     <jsp:param name="title" value="Home"/>
 </jsp:include>
 
-<%
-	for(Record record : records){
-		Set<Track> tracks = record.getTracks();
-	%>
+
 	<div>
-		<div><%out.print("Title : "+record.getTitle()); %>
-		<%= LibraryTemplate.displayFlag(user, record) %>
-		</div>
-		<table class="table table-striped">
+		<table class="table table-bordered table-striped">
+		<thead>
+          <tr>
+            <th>Record</th>
+            <th>Width</th>
+            <th>Artist</th>
+            <th>Producer</th>
+          </tr>
+        </thead>
 			<tbody>
 			<%
-				for(Track track : tracks){
-			%>
+	for(Record record : records){
+	%>
           <tr>
-            <td><%out.print(track.getTitle()); %></td>
-            <td><%out.print(track.getLabel()); %></td>
-            <td><%out.print(track.getPlayingTime()); %></td>
-            <td><%out.print(track.getTitle()); %></td>
+            <td><%= LibraryTemplate.recordLink(record) %><TAB><%= LibraryTemplate.displayFlag(user, record) %></td>
+            <td><%= record.getWidth() %></td>
+            <td><%= record.getArtist() %></td>
+            <td><%= record.getProducer() %></td>
           </tr>
           <%
 				}
@@ -43,7 +45,5 @@
 		</table>
 		
 	</div>
-	<%
-	}
-%>     
+  
 <jsp:include page="/WEB-INF/src/view/footer.jsp" />

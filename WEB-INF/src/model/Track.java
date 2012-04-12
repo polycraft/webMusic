@@ -1,6 +1,6 @@
 package model;
 
-// Generated 12 avr. 2012 14:23:42 by Hibernate Tools 3.4.0.CR1
+// Generated 12 avr. 2012 20:44:23 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -15,37 +15,39 @@ public class Track implements java.io.Serializable {
 	private Style style;
 	private String title;
 	private String rythm;
+	private String originalVersion;
 	private int label;
 	private int playingTime;
 	private Date releaseDate;
 	private Set<Record> records = new HashSet<Record>(0);
-	private Set<LinkTrackPerson> linkTrackPersons = new HashSet<LinkTrackPerson>(
-			0);
+	private Set<Person> persons = new HashSet<Person>(0);
 
 	public Track() {
 	}
 
-	public Track(Style style, String title, String rythm, int label,
-			int playingTime, Date releaseDate) {
+	public Track(Style style, String title, String rythm,
+			String originalVersion, int label, int playingTime, Date releaseDate) {
 		this.style = style;
 		this.title = title;
 		this.rythm = rythm;
+		this.originalVersion = originalVersion;
 		this.label = label;
 		this.playingTime = playingTime;
 		this.releaseDate = releaseDate;
 	}
 
-	public Track(Style style, String title, String rythm, int label,
-			int playingTime, Date releaseDate, Set<Record> records,
-			Set<LinkTrackPerson> linkTrackPersons) {
+	public Track(Style style, String title, String rythm,
+			String originalVersion, int label, int playingTime,
+			Date releaseDate, Set<Record> records, Set<Person> persons) {
 		this.style = style;
 		this.title = title;
 		this.rythm = rythm;
+		this.originalVersion = originalVersion;
 		this.label = label;
 		this.playingTime = playingTime;
 		this.releaseDate = releaseDate;
 		this.records = records;
-		this.linkTrackPersons = linkTrackPersons;
+		this.persons = persons;
 	}
 
 	public Integer getIdTrack() {
@@ -80,6 +82,14 @@ public class Track implements java.io.Serializable {
 		this.rythm = rythm;
 	}
 
+	public String getOriginalVersion() {
+		return this.originalVersion;
+	}
+
+	public void setOriginalVersion(String originalVersion) {
+		this.originalVersion = originalVersion;
+	}
+
 	public int getLabel() {
 		return this.label;
 	}
@@ -112,12 +122,12 @@ public class Track implements java.io.Serializable {
 		this.records = records;
 	}
 
-	public Set<LinkTrackPerson> getLinkTrackPersons() {
-		return this.linkTrackPersons;
+	public Set<Person> getPersons() {
+		return this.persons;
 	}
 
-	public void setLinkTrackPersons(Set<LinkTrackPerson> linkTrackPersons) {
-		this.linkTrackPersons = linkTrackPersons;
+	public void setPersons(Set<Person> persons) {
+		this.persons = persons;
 	}
 
 }
