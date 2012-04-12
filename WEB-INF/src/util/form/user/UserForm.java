@@ -42,5 +42,17 @@ public abstract class UserForm extends Form {
 		user.setWebsite(getRequestvalue("website"));
 		user.setSocialNetworkAccount(getRequestvalue("socialNetworkAccount"));
 	}
+	
+	public void fillForm(User user) {
+		associateModel("username", user.getUsername());
+		associateModel("emailAdress", user.getEmailAdress());
+		associateModel("language", user.getLanguage().getIdLanguage().toString());
+		associateModel("firstname", user.getFirstname());
+		associateModel("lastname", user.getLastname());
+		associateModel("biography", user.getBiography());
+		associateModel("picture", user.getPicture());
+		associateModel("website", user.getWebsite());
+		associateModel("socialNetworkAccount", user.getSocialNetworkAccount());
+	}
 
 }
