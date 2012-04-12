@@ -56,6 +56,11 @@
 		<servlet-name>ownRecordServlet</servlet-name>
 		<servlet-class>controller.library.OwnRecord</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>unownRecordServlet</servlet-name>
+		<servlet-class>controller.library.UnOwnRecord</servlet-class>
+	</servlet>
 
 	<servlet>
 		<servlet-name>userAdminAdd</servlet-name>
@@ -71,6 +76,18 @@
 		<servlet-name>userAdminDelete</servlet-name>
 		<servlet-class>controller.user_admin.Delete</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>detailRecordServlet</servlet-name>
+		<servlet-class>controller.library.RecordDetails</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>detailTrackServlet</servlet-name>
+		<servlet-class>controller.library.TrackDetails</servlet-class>
+	</servlet>
+	
+
 
 	<servlet-mapping>
 		<servlet-name>homeServlet</servlet-name>
@@ -129,6 +146,11 @@
 		<url-pattern>/own_record</url-pattern>
 	</servlet-mapping>
 	
+		<servlet-mapping>
+		<servlet-name>unownRecordServlet</servlet-name>
+		<url-pattern>/unown_record</url-pattern>
+	</servlet-mapping>
+	
 	
 	<servlet-mapping>
 		<servlet-name>userAdminAdd</servlet-name>
@@ -144,6 +166,17 @@
 		<servlet-name>userAdminDelete</servlet-name>
 		<url-pattern>/user-admin-delete</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>detailRecordServlet</servlet-name>
+		<url-pattern>/record_details</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>detailTrackServlet</servlet-name>
+		<url-pattern>/track_details</url-pattern>
+	</servlet-mapping>
+	
 
 	<filter>
 		<filter-name>ConnectedFilter</filter-name>
