@@ -44,6 +44,7 @@ public class Login extends HttpServlet {
 			// on recherche dans la BD:
 			// Creation de notre objet Session grace � notre HibernateUtil
 			Session sessionHibernate = HibernateUtil.currentSession();
+
 			List<User> user = (List<User>) sessionHibernate
 					.createQuery(
 							"from User user where user.username = :username and user.password = :password")

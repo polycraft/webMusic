@@ -40,6 +40,7 @@
 					<%
 						out.print("Titre: "+record.getTitle()+" / Type de copie: "+copy.getTypeCopy().getName());
 					%>
+					<a href="unown_record?id=<%= copy.getIdCopy() %>" title="Discard this Copy"><i class="icon-remove"></i></a>
 				</div>
 				<table class="table table-striped">
 					<tbody>

@@ -19,9 +19,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Person;
 import model.Record;
 import model.Style;
 import model.Track;
+import model.TrackRole;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -193,7 +195,9 @@ public class ImportCSV extends HttpServlet {
 					    	record.setTitle(title);
 					    	record.setWidth(Integer.parseInt(nextLine[3].toString()));
 					    	record.setMatrix(matrix);
-					    	record.setPressInfo(nextLine[5].toString());
+					    	record.setArtist(nextLine[5].toString());
+					    	record.setProducer(nextLine[6].toString());
+					    	record.setPressInfo(nextLine[7].toString());
 					    	
 					    	// On sauve, on renvoi, notre bean � la session Hibernate   
 						     sessionHibernate.save(record);
@@ -204,7 +208,7 @@ public class ImportCSV extends HttpServlet {
 						}
 						
 				    }
-				    if(nextLine[0].toString().equals("track")){
+				    else if(nextLine[0].toString().equals("track")){
 				    	//On regard si il existe le record �rent � la track
 				    	//connexion � la table est r�cuparation des resultats avec Title et matrix de son record identique
 				    	String matrix = nextLine[1].toString();				    	
@@ -256,11 +260,12 @@ public class ImportCSV extends HttpServlet {
 						    	track.setStyle(style);
 						    	track.setTitle(title);
 						    	track.setRythm(nextLine[4].toString());
-						    	track.setLabel(Integer.parseInt(nextLine[5].toString()));
-						    	track.setPlayingTime(Integer.parseInt(nextLine[6].toString()));
+						    	track.setOriginalVersion(nextLine[5].toString());
+						    	track.setLabel(Integer.parseInt(nextLine[6].toString()));
+						    	track.setPlayingTime(Integer.parseInt(nextLine[7].toString()));
 						    	
 						    	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-						    	track.setReleaseDate(formatter.parse(nextLine[7].toString()));
+						    	track.setReleaseDate(formatter.parse(nextLine[8].toString()));
 						    	
 						    	
 						    	// On sauve, on renvoi, notre bean � la session Hibernate   
@@ -282,6 +287,28 @@ public class ImportCSV extends HttpServlet {
 							System.out.println("record parent inexistant");
 						}
 				    }
+				    else if(nextLine[0].toString().equals("person")){
+				    	String title = nextLine[1].toString();
+				    	String role = nextLine[2].toString();
+						@SuppressWarnings("unchecked")
+						List<Track> track=  (List<Track>) sessionHibernate.createQuery("from Track track where track.title = :title").setParameter("title",title).list();
+
+						if(track.size()>= 1){
+							//la track existe bien
+							System.out.println("track existe => creer personne");
+								Person person = new Person();
+								person.setTrack(track.get(0));
+								person.setTrackRole((TrackRole) sessionHibernate.get(TrackRole.class, new Integer(nextLine[2].toString())));
+								person.setName(nextLine[3].toString());
+								sessionHibernate.save(person);
+								// Nous commitons la transaction vers la base
+							    tx.commit();	
+							}
+							else{
+								//track inexistante
+							}					
+						}
+
 					//Enfin on ferme la session 
 				      HibernateUtil.closeSession();
 			    }
@@ -301,6 +328,8 @@ public class ImportCSV extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			response.sendRedirect("importcsv");
 
 
 		}
