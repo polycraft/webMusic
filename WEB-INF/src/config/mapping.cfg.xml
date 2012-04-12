@@ -9,7 +9,6 @@
         <mapping resource="config/Track.hbm.xml" />
         <mapping resource="config/LinkTrackPerson.hbm.xml" />
         <mapping resource="config/LinkRecordPerson.hbm.xml" />
-        <mapping resource="config/LinkCopyRecord.hbm.xml" />
         <mapping resource="config/TypeCopy.hbm.xml" />
         <mapping resource="config/Category.hbm.xml" />
         <mapping resource="config/Style.hbm.xml" />

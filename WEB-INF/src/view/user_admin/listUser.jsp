@@ -37,7 +37,7 @@
 			</td>
 			<td>
 				<%
-					out.print(user.getLanguage());
+					out.print(user.getLanguage().getName());
 				%>
 			</td>
 			<td>
@@ -51,8 +51,8 @@
 				%>
 			</td>
 			<td>
-				<a href="admin-user-update?id=<%= user.getIdUser() %>"><i class="icon-edit"></i></a>
-				<a href="admin-user-delete?id=<%= user.getIdUser() %>"><i class="icon-remove"></i></a>
+				<a href="user-admin-update?id=<%= user.getIdUser() %>"><i class="icon-edit"></i></a>
+				<a href="user-admin-delete?id=<%= user.getIdUser() %>"><i class="icon-remove"></i></a>
 			</td>
 		</tr>
 		<%
@@ -62,6 +62,6 @@
 	</tbody>
 </table>
 
-<a href="admin-user-add"><i class="icon-plus"></i>Add user</a>
+<a href="user-admin-add"><i class="icon-plus"></i>Add user</a>
 
 <jsp:include page="/WEB-INF/src/view/footer.jsp" />

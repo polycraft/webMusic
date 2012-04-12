@@ -10,12 +10,14 @@ import javax.servlet.http.HttpSession;
 
 import model.User;
 
+import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import util.HibernateUtil;
 import util.HttpServlet.HttpServlet;
 import util.form.user.UpdateForm;
+import util.session.Message;
 
 @SuppressWarnings("serial")
 public class Delete extends HttpServlet {
@@ -27,14 +29,30 @@ public class Delete extends HttpServlet {
 			throws IOException, ServletException {
 
 		sessionHibernate = HibernateUtil.currentSession();
-		tx = sessionHibernate.beginTransaction();
 		
-		User user = (User)sessionHibernate.load(User.class, new Integer(request.getAttribute("idUser").toString()));
 		
-		sessionHibernate.delete(user);
+		try {
+			tx = sessionHibernate.beginTransaction();
+			
+			User user = (User)sessionHibernate.load(User.class, new Integer(request.getParameter("id")));
+			
+			sessionHibernate.delete(user);
 
-		tx.commit();
+			tx.commit();
 
+			
+			
+			Message.addMessage(request, "User supprimé avec succes");
+		} catch (ObjectNotFoundException e) {
+			Message.addError(request, "L'utilisateur n'existe pas");
+			tx.rollback();
+		} catch (Exception e) {
+			Message.addError(request, "Une erreur est survenue pendant la suppresion");
+			tx.rollback();
+		}
+		
+		
+		
 		HibernateUtil.closeSession();
 
 		response.sendRedirect("user-admin-list");

@@ -16,10 +16,6 @@ import org.hibernate.Session;
 import util.HibernateUtil;
 import util.HttpServlet.HttpServlet;
 import util.form.user.LoginForm;
-import util.validator.BlankValidator;
-import util.validator.ChainValidator;
-import util.validator.FormValidator;
-import util.validator.LengthMaxValidator;
 import util.validator.error.Error;
 
 public class Login extends HttpServlet {
@@ -69,24 +65,5 @@ public class Login extends HttpServlet {
 		} else {
 			doGet(request, response);
 		}
-	}
-
-	private FormValidator getValidator(String username, String password) {
-
-		// on v�rifie que les champs username / password / emailAdress sont non
-		// vides et la taille < max
-		FormValidator Validator = new FormValidator();
-		ChainValidator<String> fieldUsername = new ChainValidator<String>()
-				.add(new BlankValidator()).add(new LengthMaxValidator(10));
-		ChainValidator<String> fieldPassword = new ChainValidator<String>()
-				.add(new BlankValidator()).add(new LengthMaxValidator(20));
-
-		Validator.add(fieldUsername).add(fieldPassword);
-
-		fieldUsername.set(username);
-		fieldPassword.set(password);
-
-		return Validator;
-
 	}
 }

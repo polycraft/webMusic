@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 12 avr. 2012 04:38:19 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 12 avr. 2012 06:06:53 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="model.User" table="user" catalog="projetweb">
         <id name="idUser" type="java.lang.Integer">
@@ -43,6 +43,14 @@
                 <column name="id_owner" not-null="true" />
             </key>
             <one-to-many class="model.Copy" />
+        </set>
+        <set name="records" table="tracked_record" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="id_owner_flag" not-null="true" />
+            </key>
+            <many-to-many entity-name="model.Record">
+                <column name="id_record" not-null="true" />
+            </many-to-many>
         </set>
     </class>
 </hibernate-mapping>
