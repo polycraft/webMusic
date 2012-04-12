@@ -1,6 +1,6 @@
 package model;
 
-// Generated 12 avr. 2012 04:38:19 by Hibernate Tools 3.4.0.CR1
+// Generated 12 avr. 2012 06:12:49 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,6 +22,7 @@ public class User implements java.io.Serializable {
 	private String website;
 	private String socialNetworkAccount;
 	private Set<Copy> copies = new HashSet<Copy>(0);
+	private Set<Record> records = new HashSet<Record>(0);
 
 	public User() {
 	}
@@ -45,7 +46,7 @@ public class User implements java.io.Serializable {
 	public User(Language language, String username, String password,
 			String emailAdress, String firstname, String lastname,
 			String biography, String picture, String website,
-			String socialNetworkAccount, Set<Copy> copies) {
+			String socialNetworkAccount, Set<Copy> copies, Set<Record> records) {
 		this.language = language;
 		this.username = username;
 		this.password = password;
@@ -57,6 +58,7 @@ public class User implements java.io.Serializable {
 		this.website = website;
 		this.socialNetworkAccount = socialNetworkAccount;
 		this.copies = copies;
+		this.records = records;
 	}
 
 	public Integer getIdUser() {
@@ -153,6 +155,14 @@ public class User implements java.io.Serializable {
 
 	public void setCopies(Set<Copy> copies) {
 		this.copies = copies;
+	}
+
+	public Set<Record> getRecords() {
+		return this.records;
+	}
+
+	public void setRecords(Set<Record> records) {
+		this.records = records;
 	}
 
 }
