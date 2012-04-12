@@ -78,6 +78,11 @@
 	</servlet>
 	
 	<servlet>
+		<servlet-name>search</servlet-name>
+		<servlet-class>controller.search.Search</servlet-class>
+	</servlet>
+
+	<servlet>
 		<servlet-name>detailRecordServlet</servlet-name>
 		<servlet-class>controller.library.RecordDetails</servlet-class>
 	</servlet>
@@ -86,6 +91,7 @@
 		<servlet-name>detailTrackServlet</servlet-name>
 		<servlet-class>controller.library.TrackDetails</servlet-class>
 	</servlet>
+
 	
 	<servlet>
 		<servlet-name>addRecordServlet</servlet-name>
@@ -173,6 +179,11 @@
 	</servlet-mapping>
 	
 	<servlet-mapping>
+		<servlet-name>search</servlet-name>
+		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
 		<servlet-name>detailRecordServlet</servlet-name>
 		<url-pattern>/record_details</url-pattern>
 	</servlet-mapping>
@@ -187,6 +198,7 @@
 		<url-pattern>/add_record</url-pattern>
 	</servlet-mapping>
 	
+
 
 	<filter>
 		<filter-name>ConnectedFilter</filter-name>
