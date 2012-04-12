@@ -3,6 +3,7 @@ package controller.library;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,6 +24,7 @@ import util.validator.LengthMaxValidator;
 import util.validator.error.Error;
 
 import model.Copy;
+import model.CopyCondition;
 import model.Record;
 import model.TypeCopy;
 import model.User;
@@ -43,11 +45,13 @@ public class OwnRecord extends HttpServlet {
 		//Récupération des Type de copy
 		Session sessionHibernate = HibernateUtil.currentSession();
 		List<TypeCopy> typeCopies = (List<TypeCopy>) sessionHibernate.createQuery("from TypeCopy").list();
+		List<CopyCondition> copyConditions = (List<CopyCondition>) sessionHibernate.createQuery("from CopyCondition").list();
 		
 		//id du record à obtenir
 		int idRecord = Integer.parseInt(request.getParameter("id"));
 		
 		request.setAttribute("idRecord", idRecord);
+		request.setAttribute("copyConditions", copyConditions);
 		request.setAttribute("form", form);
 		request.setAttribute("typeCopies", typeCopies);
 		RequestDispatcher dispatch = request
@@ -62,46 +66,68 @@ public class OwnRecord extends HttpServlet {
 		ChainValidator<String> fieldCondition = new ChainValidator<String>()
 				.add(new BlankValidator()).add(new LengthMaxValidator(10));
 		
-		fieldCondition.set((String) request.getAttribute("condition"));
+		fieldCondition.set((String) request.getParameter("condition"));
 		
 		int idRecord = Integer.parseInt(request.getParameter("id"));
 		
-		if(Validator.valid()){
+		if(Validator.valid()){		
 			//Récupération des Type de copy
 			Session sessionHibernate = HibernateUtil.currentSession();
 			Transaction tx = sessionHibernate.beginTransaction();
 			//on promu le record dans une copy
 			Copy copy = new Copy();
-			copy.setCondition((String) request.getAttribute("condition"));
+			
+			copy.setIdCopy(null);
+			
+			int idCopyCondition = Integer.parseInt(request.getParameter("record_condition"));
+			CopyCondition condition = (CopyCondition) sessionHibernate.get(CopyCondition.class, idCopyCondition);
+			copy.setCopyCondition(condition);
 			
 			Record record = (Record)sessionHibernate.get(Record.class, idRecord);
 			copy.setRecord(record);
 			
-			User user = (User) sessionHibernate.get(User.class,
-					(Serializable) session.getAttribute("idUser"));
+			User user = (User) sessionHibernate.get(User.class,(Serializable) session.getAttribute("idUser"));
 			
 			copy.setUser(user);
 			
 			
-			System.out.println(request.getAttribute("condition"));
-			TypeCopy typeCopy = (TypeCopy)sessionHibernate.get(TypeCopy.class, Integer.parseInt((String) request.getAttribute("typecopy")));
+			int idTypeCopy = Integer.parseInt(request.getParameter("typecopy"));
+			TypeCopy typeCopy = (TypeCopy)sessionHibernate.get(TypeCopy.class, idTypeCopy);
 			
 			copy.setTypeCopy(typeCopy);
 			
-			// On sauve, on renvoi, notre bean ï¿½ la session Hibernate
-			sessionHibernate.saveOrUpdate(copy);
+			System.out.println(copy.getTypeCopy().getName());
 			
-			//puis on supprime le flag
-			user.getRecords().remove(record);
-			
-			tx.commit();
+			if(!alreadyOwned(copy, user)){
+				// On sauve si la copy n'existe pas déja
+				sessionHibernate.saveOrUpdate(copy);
+				
+				//puis on supprime le flag
+				user.getRecords().remove(record);
+				
+				tx.commit();
+			}
+			else{
+				//afficher message
+			}
+
 			// Enfin on ferme la session
 			HibernateUtil.closeSession();
+			
+			response.sendRedirect("personal_library");
 			
 		}else {
 			form.addError(new Error("Pas de condition"));
 			doGet(request, response);
 		}
+	}
+	
+	private boolean alreadyOwned(Copy copy, User user){
+		Set<Copy> copies = user.getCopies();
+		for(Copy temp : copies){
+			if(temp.getRecord().equals(copy.getRecord()) && temp.getTypeCopy().equals(copy.getTypeCopy())) return true;
+		}
+		return false;
 	}
 
 }

@@ -1,7 +1,8 @@
 <%@page import="java.util.List"%>
 <%@page import="model.TypeCopy"%>
-
+<%@page import="model.CopyCondition"%>
 <%	List<TypeCopy> typeCopies = (List<TypeCopy>) request.getAttribute("typeCopies");
+List<CopyCondition> copyConditions = (List<CopyCondition>) request.getAttribute("copyConditions");
 %>
 <jsp:include page="/WEB-INF/src/view/header.jsp">
 	<jsp:param name="title" value="Home" />
@@ -20,10 +21,13 @@
           </div>
               
 <div class="control-group">
-            <label class="control-label" for="input01">La condition du Record</label>
+            <label class="control-label" for="select01">Select the Condition</label>
             <div class="controls">
-              <input type="text" class="input-xlarge" name="condition">
-              <p class="help-block">A voir : Mint, EX, VG or G</p>
+              <select name="record_condition">
+              <%for(CopyCondition condition : copyConditions){ %>
+                <option value='<%= condition.getIdCondition() %>'><%= condition.getName() %></option>
+                <%} %>
+              </select>
             </div>
           </div>
           

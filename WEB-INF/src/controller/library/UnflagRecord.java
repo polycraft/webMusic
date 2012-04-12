@@ -43,7 +43,10 @@ public class UnflagRecord extends HttpServlet {
 		// Enfin on ferme la session
 		HibernateUtil.closeSession();
 		
-		response.sendRedirect("personal_library");
+		String redirect = request.getHeader("Referer");
+		if(redirect==null || redirect.isEmpty()) redirect = "personal_library";
+		
+		response.sendRedirect(redirect);
 
 	}
 

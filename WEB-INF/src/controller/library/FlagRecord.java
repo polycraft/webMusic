@@ -45,16 +45,17 @@ public class FlagRecord extends HttpServlet {
     	}
     	
     	//Verif si déja présent dans les Copy owned
-    	boolean alreadyOwned = false;
+    	//ENLEVE    	
+    	/*boolean alreadyOwned = false;
     	
     	if(sessionHibernate.createQuery("from Copy where id_record= :id_record and id_owner= :id_owner")
     		.setParameter("id_record", idRecordFlag)
     		.setParameter("id_owner", user.getIdUser()).list().size() >=1){
     		alreadyOwned = true;
-    	}
+    	}*/
     	
     	
-    	if(alreadyExist || alreadyOwned){
+    	if(alreadyExist){
     		//already flaged
     		//Enfin on ferme la session 
     		HibernateUtil.closeSession();
