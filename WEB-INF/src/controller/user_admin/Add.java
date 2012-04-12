@@ -15,6 +15,7 @@ import org.hibernate.Transaction;
 import util.HibernateUtil;
 import util.HttpServlet.HttpServlet;
 import util.form.user.RegisterForm;
+import util.session.Message;
 
 @SuppressWarnings("serial")
 public class Add extends HttpServlet {
@@ -62,6 +63,8 @@ public class Add extends HttpServlet {
 			tx.commit();
 
 			HibernateUtil.closeSession();
+			
+			Message.addMessage(request, "User ajouté avec succes");
 
 			response.sendRedirect("user-admin-list");
 		} else {

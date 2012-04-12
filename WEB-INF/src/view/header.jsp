@@ -1,3 +1,4 @@
+<%@page import="util.session.Message"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,4 +19,20 @@
 				<jsp:include page="/WEB-INF/src/view/menu/menu.jsp" />
 			</div>
 			<div class="span10">
+			
+			<%
+			for(String error:Message.getErrors(request)) {
+			%>
+				<div class="alert alert-error"><%= error %></div>
+			<%
+			}
+			%>
+			
+			<%
+			for(String message:Message.getMessages(request)) {
+			%>
+				<div class="alert alert-success"><%= message %></div>
+			<%
+			}
+			%>
 			
