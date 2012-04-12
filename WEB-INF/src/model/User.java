@@ -1,6 +1,6 @@
 package model;
 
-// Generated 8 avr. 2012 19:54:58 by Hibernate Tools 3.4.0.CR1
+// Generated 12 avr. 2012 03:43:20 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,7 +21,7 @@ public class User implements java.io.Serializable {
 	private String picture;
 	private String website;
 	private String socialNetworkAccount;
-	private Set<RecordLibrary> recordLibraries = new HashSet<RecordLibrary>(0);
+	private Set<Copy> copies = new HashSet<Copy>(0);
 
 	public User() {
 	}
@@ -45,7 +45,7 @@ public class User implements java.io.Serializable {
 	public User(Language language, String username, String password,
 			String emailAdress, String firstname, String lastname,
 			String biography, String picture, String website,
-			String socialNetworkAccount, Set<RecordLibrary> recordLibraries) {
+			String socialNetworkAccount, Set<Copy> copies) {
 		this.language = language;
 		this.username = username;
 		this.password = password;
@@ -56,7 +56,7 @@ public class User implements java.io.Serializable {
 		this.picture = picture;
 		this.website = website;
 		this.socialNetworkAccount = socialNetworkAccount;
-		this.recordLibraries = recordLibraries;
+		this.copies = copies;
 	}
 
 	public Integer getIdUser() {
@@ -147,12 +147,12 @@ public class User implements java.io.Serializable {
 		this.socialNetworkAccount = socialNetworkAccount;
 	}
 
-	public Set<RecordLibrary> getRecordLibraries() {
-		return this.recordLibraries;
+	public Set<Copy> getCopies() {
+		return this.copies;
 	}
 
-	public void setRecordLibraries(Set<RecordLibrary> recordLibraries) {
-		this.recordLibraries = recordLibraries;
+	public void setCopies(Set<Copy> copies) {
+		this.copies = copies;
 	}
 
 }
