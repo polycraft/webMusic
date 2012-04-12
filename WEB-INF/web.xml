@@ -27,6 +27,11 @@
 		<servlet-name>libraryServlet</servlet-name>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>personalLibraryServlet</servlet-name>
+		<servlet-class>controller.library.PersonalLibrary</servlet-class>
+	</servlet>
+	
 
 
 	<servlet-mapping>
@@ -54,6 +59,11 @@
 	<servlet-mapping>
 		<servlet-name>libraryServlet</servlet-name>
 		<url-pattern>/library</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>personalLibraryServlet</servlet-name>
+		<url-pattern>/personal_library</url-pattern>
 	</servlet-mapping>
 
 	<filter>
