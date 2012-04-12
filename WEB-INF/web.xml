@@ -56,6 +56,11 @@
 		<servlet-name>userAdminDelete</servlet-name>
 		<servlet-class>controller.user_admin.Delete</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>search</servlet-name>
+		<servlet-class>controller.search.Search</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>homeServlet</servlet-name>
@@ -112,6 +117,11 @@
 	<servlet-mapping>
 		<servlet-name>userAdminDelete</servlet-name>
 		<url-pattern>/user-admin-delete</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>search</servlet-name>
+		<url-pattern>/search</url-pattern>
 	</servlet-mapping>
 
 	<filter>
