@@ -37,7 +37,10 @@
 		<servlet-class>controller.library.PersonalLibrary</servlet-class>
 	</servlet>
 	
-
+	<servlet>
+		<servlet-name>userAdminListUser</servlet-name>
+		<servlet-class>controller.user_admin.ListUser</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>homeServlet</servlet-name>
@@ -74,6 +77,11 @@
 	<servlet-mapping>
 		<servlet-name>personalLibraryServlet</servlet-name>
 		<url-pattern>/personal_library</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>userAdminListUser</servlet-name>
+		<url-pattern>/user-admin-list</url-pattern>
 	</servlet-mapping>
 
 	<filter>

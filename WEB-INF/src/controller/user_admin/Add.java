@@ -1,4 +1,4 @@
-package controller.user;
+package controller.user_admin;
 
 import java.io.IOException;
 
@@ -15,10 +15,9 @@ import org.hibernate.Transaction;
 
 import util.HibernateUtil;
 import util.form.user.RegisterForm;
-import util.form.user.UpdateForm;
 
 @SuppressWarnings("serial")
-public class Register extends HttpServlet {
+public class Add extends HttpServlet {
 
 	private Session session;
 	private Transaction tx;
@@ -32,7 +31,7 @@ public class Register extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
+		
 		// Creation de notre objet Session grace � notre HibernateUtil
 		session = HibernateUtil.currentSession();
 
@@ -42,7 +41,7 @@ public class Register extends HttpServlet {
 
 		request.setAttribute("form", form);
 		RequestDispatcher dispatch = request
-				.getRequestDispatcher("WEB-INF/src/view/user/register.jsp");
+				.getRequestDispatcher("WEB-INF/src/view/user_admin/add.jsp");
 		dispatch.forward(request, response);
 	}
 
@@ -64,9 +63,7 @@ public class Register extends HttpServlet {
 
 			HibernateUtil.closeSession();
 
-			RequestDispatcher dispatch = request
-					.getRequestDispatcher("WEB-INF/src/view/user/register_valid.jsp");
-			dispatch.forward(request, response);
+			response.sendRedirect("user-admin-list");
 		} else {
 			doGet(request, response);
 		}

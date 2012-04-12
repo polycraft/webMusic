@@ -1,12 +1,12 @@
-package controller.user;
+package controller.user_admin;
 
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.User;
 
@@ -14,19 +14,19 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import util.HibernateUtil;
-import util.form.user.RegisterForm;
+import util.HttpServlet.HttpServlet;
 import util.form.user.UpdateForm;
 
 @SuppressWarnings("serial")
-public class Register extends HttpServlet {
+public class Update extends HttpServlet {
 
-	private Session session;
+	private Session sessionHibernate;
 	private Transaction tx;
 
-	private RegisterForm form;
+	private UpdateForm form;
 
 	protected void before(HttpServletRequest request, HttpServletResponse response) {
-		this.form = new RegisterForm();
+		this.form = new UpdateForm();
 		form.setRequest(request);
 	}
 
@@ -34,39 +34,41 @@ public class Register extends HttpServlet {
 			throws IOException, ServletException {
 
 		// Creation de notre objet Session grace � notre HibernateUtil
-		session = HibernateUtil.currentSession();
+		sessionHibernate = HibernateUtil.currentSession();
+		
+		User user = (User)sessionHibernate.load(User.class, new Integer(request.getAttribute("idUser").toString()));
+		
+		form.fillForm(user);
 
-		request.setAttribute("languages", session.createQuery("from Language").list());
+		request.setAttribute("languages", sessionHibernate.createQuery("from Language").list());
 
 		HibernateUtil.closeSession();
 
 		request.setAttribute("form", form);
 		RequestDispatcher dispatch = request
-				.getRequestDispatcher("WEB-INF/src/view/user/register.jsp");
+				.getRequestDispatcher("WEB-INF/src/view/user_admin/update.jsp");
 		dispatch.forward(request, response);
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		if (form.validate()) {
-			session = HibernateUtil.currentSession();
-			tx = session.beginTransaction();
+		if (form.validate()) {System.out.println("good");
+			sessionHibernate = HibernateUtil.currentSession();
+			tx = sessionHibernate.beginTransaction();
 			
 			//Création de l'utilisateur
-			User user = new User();
-			user.setIdUser(null);
-			form.fillUser(user,session);
+			User user = (User)sessionHibernate.load(User.class, new Integer(request.getAttribute("idUser").toString()));
+			
+			form.fillUser(user,sessionHibernate);
 
-			session.save(user);
+			sessionHibernate.save(user);
 
 			tx.commit();
 
 			HibernateUtil.closeSession();
 
-			RequestDispatcher dispatch = request
-					.getRequestDispatcher("WEB-INF/src/view/user/register_valid.jsp");
-			dispatch.forward(request, response);
+			response.sendRedirect("user-admin-list");
 		} else {
 			doGet(request, response);
 		}
