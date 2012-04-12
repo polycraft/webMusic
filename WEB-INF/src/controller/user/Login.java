@@ -1,35 +1,26 @@
 package controller.user;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import model.User;
+
+import org.hibernate.Session;
 
 import util.HibernateUtil;
+import util.HttpServlet.HttpServlet;
 import util.form.user.LoginForm;
-import util.form.user.RegisterForm;
 import util.validator.BlankValidator;
 import util.validator.ChainValidator;
 import util.validator.FormValidator;
 import util.validator.LengthMaxValidator;
 import util.validator.error.Error;
-import model.Language;
-import model.User;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.List;
-
-import javax.servlet.*;
-import javax.servlet.http.*;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 public class Login extends HttpServlet {
 
@@ -40,16 +31,16 @@ public class Login extends HttpServlet {
 
 	public Login() {
 		super();
+		
+	}
+	
+	protected void before(HttpServletRequest request, HttpServletResponse response) {
 		this.form = new LoginForm();
+		form.setRequest(request);
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
-		if (!post) {
-			form.setRequest(request);
-			post = false;
-		}
 
 		request.setAttribute("form", form);
 		RequestDispatcher dispatch = request
@@ -60,9 +51,6 @@ public class Login extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
-		form.setRequest(request);
-		post = true;
 
 		if (form.validate()) {
 			// on recherche dans la BD:
