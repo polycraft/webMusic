@@ -15,7 +15,7 @@
 		Set<Track> tracks = record.getTracks();
 	%>
 	<div>
-		<div><%out.print(record.getTitle()); %></div>
+		<div><%out.print("Title : "+record.getTitle()); %> / <a href="flag_record?id=<%= record.getIdRecord() %>" class="icon-flag " title="Flag this Record"></a></div>
 		<table class="table table-striped">
 			<tbody>
 			<%
