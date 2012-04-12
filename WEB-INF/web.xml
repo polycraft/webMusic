@@ -43,6 +43,21 @@
 	</servlet>
 	
 	<servlet>
+		<servlet-name>flagRecordServlet</servlet-name>
+		<servlet-class>controller.library.FlagRecord</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>unflagRecordServlet</servlet-name>
+		<servlet-class>controller.library.UnflagRecord</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>ownRecordServlet</servlet-name>
+		<servlet-class>controller.library.OwnRecord</servlet-class>
+	</servlet>
+
+	<servlet>
 		<servlet-name>userAdminAdd</servlet-name>
 		<servlet-class>controller.user_admin.Add</servlet-class>
 	</servlet>
@@ -103,6 +118,22 @@
 		<servlet-name>userAdminListUser</servlet-name>
 		<url-pattern>/user-admin-list</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>flagRecordServlet</servlet-name>
+		<url-pattern>/flag_record</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>unflagRecordServlet</servlet-name>
+		<url-pattern>/unflag_record</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>ownRecordServlet</servlet-name>
+		<url-pattern>/own_record</url-pattern>
+	</servlet-mapping>
+	
 	
 	<servlet-mapping>
 		<servlet-name>userAdminAdd</servlet-name>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 12 avr. 2012 04:38:19 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 12 avr. 2012 14:23:42 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="model.User" table="user" catalog="projetweb">
         <id name="idUser" type="java.lang.Integer">
@@ -38,6 +38,14 @@
         <property name="socialNetworkAccount" type="string">
             <column name="social_network_account" length="200" not-null="true" />
         </property>
+        <set name="records" table="tracked_record" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="id_owner_flag" not-null="true" />
+            </key>
+            <many-to-many entity-name="model.Record">
+                <column name="id_record" not-null="true" />
+            </many-to-many>
+        </set>
         <set name="copies" table="copy" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="id_owner" not-null="true" />

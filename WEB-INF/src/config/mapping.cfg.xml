@@ -4,12 +4,12 @@
 "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
+             <mapping resource="config/CopyCondition.hbm.xml" />
         <mapping resource="config/Person.hbm.xml" />
         <mapping resource="config/User.hbm.xml" />
         <mapping resource="config/Track.hbm.xml" />
         <mapping resource="config/LinkTrackPerson.hbm.xml" />
         <mapping resource="config/LinkRecordPerson.hbm.xml" />
-        <mapping resource="config/LinkCopyRecord.hbm.xml" />
         <mapping resource="config/TypeCopy.hbm.xml" />
         <mapping resource="config/Category.hbm.xml" />
         <mapping resource="config/Style.hbm.xml" />

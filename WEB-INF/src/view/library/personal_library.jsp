@@ -4,6 +4,7 @@
 <%@page import="model.Track"%>
 <%@page import="model.Copy"%>
 <%@page import="model.TypeCopy"%>
+<%@page import="model.User"%>
 
 <jsp:include page="/WEB-INF/src/view/header.jsp">
 	<jsp:param name="title" value="Home" />
@@ -12,6 +13,10 @@
 <%
 	List<Copy> ownedCopies = (List<Copy>) request
 			.getAttribute("ownedCopies");
+	User user = (User) request
+			.getAttribute("user");
+	Set<Record> trackedRecords = user.getRecords();
+
 %>
 
 
@@ -77,7 +82,56 @@
 
 		</div>
 		<div class="tab-pane" id="2">
-			<p>Howdy, I'm in Section 2.</p>
+
+			<%
+				for (Record trackedRecord : trackedRecords) {
+					Set<Track> tracks = trackedRecord.getTracks();
+			%>
+			<div>
+				<div>
+					<%
+						out.print("Titre: "+trackedRecord.getTitle());
+					%> / <a href="unflag_record?id=<%= trackedRecord.getIdRecord() %>" class="icon-remove" title="Unflag this record"></a> / <a href="own_record?id=<%= trackedRecord.getIdRecord() %>" class="icon-ok" title="Own it"></a>
+				</div>
+				<table class="table table-striped">
+					<tbody>
+						<%
+							for (Track track : tracks) {
+						%>
+						<tr>
+							<td>
+								<%
+									out.print(track.getTitle());
+								%>
+							</td>
+							<td>
+								<%
+									out.print(track.getLabel());
+								%>
+							</td>
+							<td>
+								<%
+									out.print(track.getPlayingTime());
+								%>
+							</td>
+							<td>
+								<%
+									out.print(track.getTitle());
+								%>
+							</td>
+						</tr>
+						<%
+							}
+						%>
+
+					</tbody>
+				</table>
+
+			</div>
+			<%
+				}
+			%>			
+			
 		</div>
 		<div class="tab-pane" id="3">
 			<p>What up girl, this is Section 3.</p>
