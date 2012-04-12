@@ -6,6 +6,8 @@
 
 WEB-INF/classes/*
 
+WEB-INF/classes/*
+
 WEB-INF/lib/*
 
 .settings
