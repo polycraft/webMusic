@@ -135,7 +135,7 @@
 			
 		</div>
 		<div class="tab-pane" id="3">
-			<p>What up girl, this is Section 3.</p>
+			<p>TODO</p>
 		</div>
 	</div>
 </div>
