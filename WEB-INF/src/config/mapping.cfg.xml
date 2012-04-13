@@ -4,14 +4,17 @@
 "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <mapping resource="config/TypeCopy.hbm.xml" />
-        <mapping resource="config/Person.hbm.xml" />
         <mapping resource="config/CopyCondition.hbm.xml" />
+        <mapping resource="config/Person.hbm.xml" />
+        <mapping resource="config/Right.hbm.xml" />
+        <mapping resource="config/User.hbm.xml" />
+        <mapping resource="config/Track.hbm.xml" />
+        <mapping resource="config/Playlist.hbm.xml" />
+        <mapping resource="config/TypeCopy.hbm.xml" />
         <mapping resource="config/Category.hbm.xml" />
         <mapping resource="config/Style.hbm.xml" />
-        <mapping resource="config/User.hbm.xml" />
         <mapping resource="config/Copy.hbm.xml" />
-        <mapping resource="config/Track.hbm.xml" />
+        <mapping resource="config/PlaylistWorker.hbm.xml" />
         <mapping resource="config/Language.hbm.xml" />
         <mapping resource="config/TrackRole.hbm.xml" />
         <mapping resource="config/Record.hbm.xml" />

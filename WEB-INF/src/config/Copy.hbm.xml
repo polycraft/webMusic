@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 12 avr. 2012 20:44:24 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 13 avr. 2012 18:31:50 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="model.Copy" table="copy" catalog="projetweb">
         <id name="idCopy" type="java.lang.Integer">
@@ -20,5 +20,13 @@
         <many-to-one name="record" class="model.Record" fetch="select">
             <column name="id_record" not-null="true" />
         </many-to-one>
+        <set name="playlists" table="link_playlist_copy" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_copy" not-null="true" />
+            </key>
+            <many-to-many entity-name="model.Playlist">
+                <column name="id_playlist" not-null="true" />
+            </many-to-many>
+        </set>
     </class>
 </hibernate-mapping>

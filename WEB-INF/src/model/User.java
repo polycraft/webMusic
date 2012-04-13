@@ -1,6 +1,6 @@
 package model;
 
-// Generated 13 avr. 2012 15:26:32 by Hibernate Tools 3.4.0.CR1
+// Generated 13 avr. 2012 18:31:48 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,7 +22,9 @@ public class User implements java.io.Serializable {
 	private String picture;
 	private String website;
 	private String socialNetworkAccount;
+	private Set<Playlist> playlists = new HashSet<Playlist>(0);
 	private Set<Record> records = new HashSet<Record>(0);
+	private Set<PlaylistWorker> playlistWorkers = new HashSet<PlaylistWorker>(0);
 	private Set<Copy> copies = new HashSet<Copy>(0);
 
 	public User() {
@@ -48,7 +50,9 @@ public class User implements java.io.Serializable {
 	public User(Language language, String username, boolean admin,
 			String password, String emailAdress, String firstname,
 			String lastname, String biography, String picture, String website,
-			String socialNetworkAccount, Set<Record> records, Set<Copy> copies) {
+			String socialNetworkAccount, Set<Playlist> playlists,
+			Set<Record> records, Set<PlaylistWorker> playlistWorkers,
+			Set<Copy> copies) {
 		this.language = language;
 		this.username = username;
 		this.admin = admin;
@@ -60,7 +64,9 @@ public class User implements java.io.Serializable {
 		this.picture = picture;
 		this.website = website;
 		this.socialNetworkAccount = socialNetworkAccount;
+		this.playlists = playlists;
 		this.records = records;
+		this.playlistWorkers = playlistWorkers;
 		this.copies = copies;
 	}
 
@@ -160,12 +166,28 @@ public class User implements java.io.Serializable {
 		this.socialNetworkAccount = socialNetworkAccount;
 	}
 
+	public Set<Playlist> getPlaylists() {
+		return this.playlists;
+	}
+
+	public void setPlaylists(Set<Playlist> playlists) {
+		this.playlists = playlists;
+	}
+
 	public Set<Record> getRecords() {
 		return this.records;
 	}
 
 	public void setRecords(Set<Record> records) {
 		this.records = records;
+	}
+
+	public Set<PlaylistWorker> getPlaylistWorkers() {
+		return this.playlistWorkers;
+	}
+
+	public void setPlaylistWorkers(Set<PlaylistWorker> playlistWorkers) {
+		this.playlistWorkers = playlistWorkers;
 	}
 
 	public Set<Copy> getCopies() {

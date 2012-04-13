@@ -3,19 +3,19 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 13 avr. 2012 18:31:50 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="model.Person" table="person" catalog="projetweb">
-        <id name="idPerson" type="java.lang.Integer">
-            <column name="id_person" />
+    <class name="model.Right" table="right" catalog="projetweb">
+        <id name="idRight" type="java.lang.Integer">
+            <column name="id_right" />
             <generator class="identity" />
         </id>
-        <many-to-one name="track" class="model.Track" fetch="select">
-            <column name="id_track" not-null="true" />
-        </many-to-one>
-        <many-to-one name="trackRole" class="model.TrackRole" fetch="select">
-            <column name="id_track_role" not-null="true" />
-        </many-to-one>
         <property name="name" type="string">
             <column name="name" length="100" not-null="true" />
         </property>
+        <set name="playlistWorkers" table="playlist_worker" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_right" not-null="true" />
+            </key>
+            <one-to-many class="model.PlaylistWorker" />
+        </set>
     </class>
 </hibernate-mapping>

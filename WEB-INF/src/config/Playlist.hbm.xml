@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13 avr. 2012 18:31:50 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="model.Playlist" table="playlist" catalog="projetweb">
+        <id name="idPlaylist" type="java.lang.Integer">
+            <column name="id_playlist" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="model.User" fetch="select">
+            <column name="id_owner" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="100" not-null="true" />
+        </property>
+        <set name="copies" table="link_playlist_copy" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="id_playlist" not-null="true" />
+            </key>
+            <many-to-many entity-name="model.Copy">
+                <column name="id_copy" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="playlistWorkers" table="playlist_worker" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_playlist" not-null="true" />
+            </key>
+            <one-to-many class="model.PlaylistWorker" />
+        </set>
+    </class>
+</hibernate-mapping>
