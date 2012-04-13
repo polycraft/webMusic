@@ -74,7 +74,7 @@ public class UpdateRecord extends HttpServlet {
 	
 				HibernateUtil.closeSession();
 	
-				response.sendRedirect("search?id_record="+record.getIdRecord());
+				response.sendRedirect("search?view=record&id_record="+record.getIdRecord());
 				
 			} else {
 				doGet(request, response);

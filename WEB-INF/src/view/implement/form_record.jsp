@@ -24,7 +24,7 @@
 				<div class="control-group <%= TemplateForm.hasError(form.get("matrix")) %>">
 					<label for="matrix" class="control-label">matrix</label>
 					<div class="controls">
-						<input type="text" id="matrix" name="matrix" <%= TemplateForm.value(form, "matrix") %> />
+						<input type="text" id="matrix" name="matrix" <%= TemplateForm.value(form, "matrix") %> />*
 						<%= TemplateForm.fieldError(form.get("matrix")) %>
 					</div>
 				</div>

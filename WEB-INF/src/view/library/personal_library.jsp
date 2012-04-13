@@ -5,6 +5,7 @@
 <%@page import="model.Copy"%>
 <%@page import="model.TypeCopy"%>
 <%@page import="model.User"%>
+<%@page import="util.template.LibraryTemplate"%>
 
 <jsp:include page="/WEB-INF/src/view/header.jsp">
 	<jsp:param name="title" value="Home" />
@@ -37,9 +38,8 @@
 			%>
 			<div>
 				<div>
-					<%
-						out.print("Titre: "+record.getTitle()+" / Type de copie: "+copy.getTypeCopy().getName());
-					%>
+					Titre: <a href="search?view=record&id_record=<%= record.getIdRecord() %>"><%= record.getTitle() %></a><%= LibraryTemplate.displayEdit(user, record) %> / 
+					Type de copie: <%= copy.getTypeCopy().getName() %>
 					<a href="unown_record?id=<%= copy.getIdCopy() %>" title="Discard this Copy"><i class="icon-remove"></i></a>
 				</div>
 				<table class="table table-striped">
