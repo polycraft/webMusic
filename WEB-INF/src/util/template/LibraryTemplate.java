@@ -11,7 +11,11 @@ import model.User;
 public class LibraryTemplate {
 
 
-
+	public static String displayEdit(User user ,Record record){
+		
+		if(user== null) return "";
+		return "<a href=\"update_record?id="+record.getIdRecord()+"\" title=\"Update this record\"><i class=\"icon-edit\"></i></a>";
+	}
 	
 	public static String displayFlag(User user ,Record record){
 		
@@ -23,7 +27,7 @@ public class LibraryTemplate {
 				break;
 			}				
 		}
-		String edit="<a href=\"update_record?id="+record.getIdRecord()+"\" title=\"Update this record\"><i class=\"icon-edit\"></i></a>";
+		String edit=displayEdit(user,record);
 		
 		if(alreadyTracked){
 			return "<a href=\"unflag_record?id="+record.getIdRecord()+"\" title=\"Unflag this record\"><i class=\"icon-star\"></i></a>"+edit;

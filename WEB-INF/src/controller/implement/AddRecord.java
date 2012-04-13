@@ -58,7 +58,7 @@ public class AddRecord extends HttpServlet {
 
 			HibernateUtil.closeSession();
 
-			response.sendRedirect("library");
+			response.sendRedirect("search?view=record&id_record="+record.getIdRecord());
 			
 		} else {
 			doGet(request, response);
