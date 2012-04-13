@@ -92,6 +92,14 @@
 		<servlet-class>controller.library.TrackDetails</servlet-class>
 	</servlet>
 
+	
+	<servlet>
+		<servlet-name>addRecordServlet</servlet-name>
+		<servlet-class>controller.implement.AddRecord</servlet-class>
+	</servlet>
+	
+
+
 	<servlet-mapping>
 		<servlet-name>homeServlet</servlet-name>
 		<url-pattern>/index</url-pattern>
@@ -184,6 +192,13 @@
 		<servlet-name>detailTrackServlet</servlet-name>
 		<url-pattern>/track_details</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>addRecordServlet</servlet-name>
+		<url-pattern>/add_record</url-pattern>
+	</servlet-mapping>
+	
+
 
 	<filter>
 		<filter-name>ConnectedFilter</filter-name>
