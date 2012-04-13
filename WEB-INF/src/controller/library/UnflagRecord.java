@@ -26,7 +26,7 @@ public class UnflagRecord extends HttpServlet {
 		HttpSession session = request.getSession();
 		int idRecordFlag = Integer.parseInt(request.getParameter("id"));
 
-		// Récupération de tout les Records dans la base de donnée
+		// Rï¿½cupï¿½ration de tout les Records dans la base de donnï¿½e
 		Session sessionHibernate = HibernateUtil.currentSession();
 		Transaction tx = sessionHibernate.beginTransaction();
 		
@@ -36,7 +36,7 @@ public class UnflagRecord extends HttpServlet {
 				(Serializable) session.getAttribute("idUser"));
 
 		user.getRecords().remove(record);
-
+//TODO simplifier
 		// On sauve, on renvoi, notre bean ï¿½ la session Hibernate
 		sessionHibernate.saveOrUpdate(user);
 
