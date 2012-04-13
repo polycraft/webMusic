@@ -23,11 +23,13 @@ public class LibraryTemplate {
 				break;
 			}				
 		}
+		String edit="<a href=\"update_record?id="+record.getIdRecord()+"\" title=\"Update this record\"><i class=\"icon-edit\"></i></a>";
+		
 		if(alreadyTracked){
-			return "<a href=\"unflag_record?id="+record.getIdRecord()+"\" title=\"Unflag this record\"><i class=\"icon-star\"></i></a>";
+			return "<a href=\"unflag_record?id="+record.getIdRecord()+"\" title=\"Unflag this record\"><i class=\"icon-star\"></i></a>"+edit;
 		}
 		else{
-			return "<a href=\"flag_record?id="+record.getIdRecord()+"\" title=\"Flag this Record\"><i class=\"icon-flag\"></i></a>";
+			return "<a href=\"flag_record?id="+record.getIdRecord()+"\" title=\"Flag this Record\"><i class=\"icon-flag\"></i></a>"+edit;
 	
 		}
 	}

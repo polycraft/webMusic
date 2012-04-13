@@ -1,42 +1,27 @@
 package controller.implement;
 
 import java.io.IOException;
-import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import util.HttpServlet.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import model.Record;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import util.HibernateUtil;
-import util.form.implement.AddRecordForm;
-import util.form.user.LoginForm;
-import util.form.user.RegisterForm;
-import util.validator.BlankValidator;
-import util.validator.ChainValidator;
-import util.validator.FormValidator;
-import util.validator.LengthMaxValidator;
-import util.validator.error.Error;
-
-import model.Copy;
-import model.CopyCondition;
-import model.Record;
-import model.TypeCopy;
-import model.User;
+import util.HttpServlet.HttpServlet;
+import util.form.implement.RecordForm;
 
 public class AddRecord extends HttpServlet {
 	
-	private AddRecordForm form;
+	private RecordForm form;
 	
 	protected void before(HttpServletRequest request, HttpServletResponse response) {
-		this.form = new AddRecordForm();
+		this.form = new RecordForm();
 		form.setRequest(request);
 	}
 

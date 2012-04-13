@@ -57,6 +57,8 @@
 		<input type="hidden" <%= TemplateForm.value(form, "order_col") %> name="order_col">
 	</form>
 	
+	<a href="add_record"><i class="icon-plus"></i>Ajouter un record</a>
+	
 	<div class="tabbable">
 		<ul class="nav nav-tabs">
 			<li <%= SearchTemplate.activateViews(search, "general", true) %>>

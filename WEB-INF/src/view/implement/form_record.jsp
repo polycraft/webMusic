@@ -2,9 +2,9 @@
 <%@page import="model.Category"%>
 <%@page import="java.util.List"%>
 <%@page import="util.form.TemplateForm"%>
-<%@page import="util.form.implement.AddRecordForm"%>
+<%@page import="util.form.implement.RecordForm"%>
 <%
-AddRecordForm form=(AddRecordForm)request.getAttribute("form");
+	RecordForm form=(RecordForm)request.getAttribute("form");
 	List<Category> categories =  (List<Category>)request.getAttribute("category");
 %>
 <form method="post">
@@ -21,19 +21,11 @@ AddRecordForm form=(AddRecordForm)request.getAttribute("form");
 					</div>
 				</div>
 				
-				<div class="control-group <%= TemplateForm.hasError(form.get("artist")) %>">
-					<label for="artist" class="control-label">artist</label>
+				<div class="control-group <%= TemplateForm.hasError(form.get("matrix")) %>">
+					<label for="matrix" class="control-label">matrix</label>
 					<div class="controls">
-						<input type="text" id="artist" name="artist" />*
-						<%= TemplateForm.fieldError(form.get("artist")) %>
-					</div>
-				</div>
-				
-				<div class="control-group <%= TemplateForm.hasError(form.get("producer")) %>">
-					<label for="producer" class="control-label">producer</label>
-					<div class="controls">
-						<input type="text" id="producer" name="producer" />*
-						<%= TemplateForm.fieldError(form.get("producer")) %>
+						<input type="text" id="matrix" name="matrix" <%= TemplateForm.value(form, "matrix") %> />
+						<%= TemplateForm.fieldError(form.get("matrix")) %>
 					</div>
 				</div>
 				
@@ -59,16 +51,22 @@ AddRecordForm form=(AddRecordForm)request.getAttribute("form");
 						<%= TemplateForm.fieldError(form.get("category")) %>
 					</div>
 				</div>
-
-		
-				<div class="control-group <%= TemplateForm.hasError(form.get("matrix")) %>">
-					<label for="matrix" class="control-label">matrix</label>
+				
+				<div class="control-group <%= TemplateForm.hasError(form.get("artist")) %>">
+					<label for="artist" class="control-label">artist</label>
 					<div class="controls">
-						<input type="text" id="matrix" name="matrix" <%= TemplateForm.value(form, "matrix") %> />
-						<%= TemplateForm.fieldError(form.get("matrix")) %>
+						<input type="text" id="artist" name="artist" />
+						<%= TemplateForm.fieldError(form.get("artist")) %>
 					</div>
 				</div>
 				
+				<div class="control-group <%= TemplateForm.hasError(form.get("producer")) %>">
+					<label for="producer" class="control-label">producer</label>
+					<div class="controls">
+						<input type="text" id="producer" name="producer" />
+						<%= TemplateForm.fieldError(form.get("producer")) %>
+					</div>
+				</div>
 				
 				<div class="control-group <%= TemplateForm.hasError(form.get("pressInfo")) %>">
 					<label for="pressInfo" class="control-label">pressInfo</label>
