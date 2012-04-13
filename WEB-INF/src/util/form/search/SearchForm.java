@@ -9,6 +9,7 @@ public class SearchForm extends Form {
 	protected void configure() {
 		add("text",new ChainValidator<String>());
 		add("artist",new ChainValidator<String>());
+		add("producer",new ChainValidator<String>());
 		add("all",new ChainValidator<String>());
 		add("personnal",new ChainValidator<String>());
 		add("tracked",new ChainValidator<String>());
@@ -23,7 +24,8 @@ public class SearchForm extends Form {
 	
 	public void fillSearch(Search search) {
 		search.setText(getRequestvalue("text"));
-		search.setText(getRequestvalue("artist"));
+		search.setArtist(getRequestvalue("artist"));
+		search.setProducer(getRequestvalue("producer"));
 		
 		search.setAll(getRequestvalue("all")!=null);
 		search.setPersonnal(getRequestvalue("personnal")!=null);

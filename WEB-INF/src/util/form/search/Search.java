@@ -6,6 +6,7 @@ import java.util.Map;
 public class Search {
 	private String text;
 	private String artist;
+	private String producer;
 	private boolean all;
 	private boolean personnal;
 	private boolean tracked;
@@ -31,6 +32,12 @@ public class Search {
 	}
 	public void setArtist(String artist) {
 		this.artist = artist;
+	}
+	public String getProducer() {
+		return producer;
+	}
+	public void setProducer(String producer) {
+		this.producer = producer;
 	}
 	public boolean isAll() {
 		return all;
@@ -196,5 +203,11 @@ public class Search {
 	private void addMapAttribute(Map<String,String> map,String name,Object value) {
 		if(value!=null && !value.toString().isEmpty() )
 			map.put(name, value.toString());
+	}
+	
+	public boolean isavancedSearch() {
+		if((artist!=null && !artist.isEmpty()) || (producer!=null && !producer.isEmpty()))
+			return true;
+		return false;
 	}
 }

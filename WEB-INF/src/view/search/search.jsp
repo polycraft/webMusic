@@ -3,9 +3,11 @@
 <%@page import="java.util.List"%>
 <%@page import="util.form.search.SearchForm"%>
 <%@page import="util.form.search.Search"%>
+<%@page import="model.User"%>
 <%
 	SearchForm form=(SearchForm)request.getAttribute("form");
 	Search search=(Search)request.getAttribute("search");
+	User user=(User)request.getAttribute("user");
 %>
 
 <jsp:include page="/WEB-INF/src/view/header.jsp">
@@ -17,19 +19,38 @@
 			<input type="text" class="input-medium search-query" <%= TemplateForm.value(form, "text") %> name="text">
 			<button type="submit" class="btn">Search</button>
 		</div>
-		<input type="text" class="input-medium search-query" <%= TemplateForm.value(form, "artist") %> name="artist">
+		<% if(user!=null) {%>
 		<div class="control-group">
-			<div class="controls">
-              <label class="checkbox inline">
-                <input type="checkbox" id="all" value="all" name="all" <%= TemplateForm.checked(form, "all") %> > All data base
-              </label>
-              <label class="checkbox inline">
-                <input type="checkbox" id="personnal" value="personnal" name="personnal" <%= TemplateForm.checked(form, "personnal") %>> Personnal librairy
-              </label>
-              <label class="checkbox">
-                <input type="checkbox" id="tracked" value="tracked" name="tracked" <%= TemplateForm.checked(form, "tracked") %>> track librairy
-              </label>
+				<div class="controls">
+	              <label class="checkbox inline">
+	                <input type="checkbox" id="all" value="all" name="all" <%= TemplateForm.checked(form, "all") %> > All data base
+	              </label>
+	              
+	              <label class="checkbox inline">
+	                <input type="checkbox" id="personnal" value="personnal" name="personnal" <%= TemplateForm.checked(form, "personnal") %>> Personnal librairy
+	              </label>
+	              <label class="checkbox">
+	                <input type="checkbox" id="tracked" value="tracked" name="tracked" <%= TemplateForm.checked(form, "tracked") %>> track librairy
+	              </label>
+	            </div>
+		</div>
+		 <%
+		 }%>
+		 <a href="#more_search" data-toggle="collapse" data-target="#more_search" class="collapse">Recherche avancée</a>
+		<div class="form-horizontal collapse <%= (search.isavancedSearch())?"":"in" %>" id="more_search">
+			<div class="control-group">
+	            <label class="control-label" for="artist">Artist</label>
+	            <div class="controls">
+	              <input type="text" name="artist" id="artist" <%= TemplateForm.value(form, "artist") %>>
+	            </div>
             </div>
+            <div class="control-group">
+	            <label class="control-label" for="producer">producer</label>
+	            <div class="controls">
+	              <input type="text" name="producer" id="producer" <%= TemplateForm.value(form, "producer") %>>
+	            </div>
+            </div>
+			
 		</div>
 		
 		<input type="hidden" <%= TemplateForm.value(form, "order") %> name="order">
@@ -70,4 +91,7 @@
 	<%
 	} %>
 	
+	<script type="text/javascript">
+	$(".collapse").collapse()
+	</script>
 	<jsp:include page="/WEB-INF/src/view/footer.jsp" />

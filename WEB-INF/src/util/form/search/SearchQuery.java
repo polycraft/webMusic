@@ -94,6 +94,7 @@ public class SearchQuery {
 	private void createWhereQuery(StringBuilder query,Map<String, Object> parameters,String prefix) {
 		addCritereaLike("title",search.getText(), query, parameters, prefix);
 		addCritereaLike("artist",search.getArtist(), query, parameters, prefix);
+		addCritereaLike("producer",search.getProducer(), query, parameters, prefix);
 	}
 	
 	private String createSelectQuery() {
