@@ -32,7 +32,7 @@
 	for(Record record : records){
 	%>
           <tr>
-            <td><%= LibraryTemplate.recordLink(record) %><TAB><%= LibraryTemplate.displayFlag(user, record) %></td>
+            <td><%= LibraryTemplate.recordLink(record) %><%= LibraryTemplate.displayFlag(user, record) %></td>
             <td><%= record.getWidth() %></td>
             <td><%= record.getArtist() %></td>
             <td><%= record.getProducer() %></td>
