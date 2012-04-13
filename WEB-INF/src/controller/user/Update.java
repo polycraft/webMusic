@@ -16,6 +16,7 @@ import org.hibernate.Transaction;
 import util.HibernateUtil;
 import util.HttpServlet.HttpServlet;
 import util.form.user.UpdateForm;
+import util.session.Message;
 
 @SuppressWarnings("serial")
 public class Update extends HttpServlet {
@@ -70,9 +71,8 @@ public class Update extends HttpServlet {
 
 			HibernateUtil.closeSession();
 
-			RequestDispatcher dispatch = request
-					.getRequestDispatcher("WEB-INF/src/view/user/register_valid.jsp");
-			dispatch.forward(request, response);
+			Message.addMessage(request, "Profil mis à jours");
+			response.sendRedirect("user-update");
 		} else {
 			doGet(request, response);
 		}

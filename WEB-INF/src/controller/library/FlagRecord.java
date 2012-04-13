@@ -19,6 +19,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import util.HibernateUtil;
+import util.session.Message;
 
 public class FlagRecord extends HttpServlet {
 	
@@ -78,6 +79,8 @@ public class FlagRecord extends HttpServlet {
     	}
     	String redirect = request.getHeader("Referer");
 		if(redirect==null || redirect.isEmpty()) redirect = "personal_library";
+		
+		Message.addMessage(request, "Record flaged");
 		
 		response.sendRedirect(redirect);
     	

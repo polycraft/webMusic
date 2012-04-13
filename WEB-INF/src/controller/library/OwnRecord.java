@@ -17,6 +17,7 @@ import org.hibernate.Transaction;
 
 import util.HibernateUtil;
 import util.form.user.LoginForm;
+import util.session.Message;
 import util.validator.BlankValidator;
 import util.validator.ChainValidator;
 import util.validator.FormValidator;
@@ -116,6 +117,8 @@ public class OwnRecord extends HttpServlet {
 			
 			String redirect = request.getHeader("Referer");
 			if(redirect==null || redirect.isEmpty()) redirect = "personal_library";
+			
+			Message.addMessage(request, "Record owned");
 			
 			response.sendRedirect(redirect);
 			

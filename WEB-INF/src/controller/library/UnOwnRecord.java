@@ -17,6 +17,7 @@ import org.hibernate.Transaction;
 
 import util.HibernateUtil;
 import util.form.user.LoginForm;
+import util.session.Message;
 import util.validator.BlankValidator;
 import util.validator.ChainValidator;
 import util.validator.FormValidator;
@@ -37,7 +38,7 @@ public class UnOwnRecord extends HttpServlet {
 		HttpSession session = request.getSession();
 		Integer idCopy = new Integer(request.getParameter("id"));
 
-		// Récupération de tout les Records dans la base de donnée
+		// Rï¿½cupï¿½ration de tout les Records dans la base de donnï¿½e
 		Session sessionHibernate = HibernateUtil.currentSession();
 		Transaction tx = sessionHibernate.beginTransaction();
 		
@@ -52,6 +53,8 @@ public class UnOwnRecord extends HttpServlet {
 		
 		String redirect = request.getHeader("Referer");
 		if(redirect==null || redirect.isEmpty()) redirect = "personal_library";
+		
+		Message.addMessage(request, "Record unown");
 		
 		response.sendRedirect(redirect);
 	}

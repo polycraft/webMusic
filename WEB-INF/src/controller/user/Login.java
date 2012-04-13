@@ -16,6 +16,7 @@ import org.hibernate.Session;
 import util.HibernateUtil;
 import util.HttpServlet.HttpServlet;
 import util.form.user.LoginForm;
+import util.session.Message;
 import util.validator.error.Error;
 
 public class Login extends HttpServlet {
@@ -56,7 +57,7 @@ public class Login extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("idUser", user.get(0).getIdUser());
 				session.setAttribute("username", user.get(0).getUsername());
-
+				Message.addMessage(request, "Vous êtes connecté");
 				response.sendRedirect("");
 
 			} else {

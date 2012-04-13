@@ -17,6 +17,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import util.HibernateUtil;
+import util.session.Message;
 
 public class UnflagRecord extends HttpServlet {
 	
@@ -46,6 +47,8 @@ public class UnflagRecord extends HttpServlet {
 		
 		String redirect = request.getHeader("Referer");
 		if(redirect==null || redirect.isEmpty()) redirect = "personal_library";
+		
+		Message.addMessage(request, "Record unflaged");
 		
 		response.sendRedirect(redirect);
 

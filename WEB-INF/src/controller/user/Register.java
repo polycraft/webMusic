@@ -15,6 +15,7 @@ import org.hibernate.Transaction;
 import util.HibernateUtil;
 import util.HttpServlet.HttpServlet;
 import util.form.user.RegisterForm;
+import util.session.Message;
 
 @SuppressWarnings("serial")
 public class Register extends HttpServlet {
@@ -62,10 +63,9 @@ public class Register extends HttpServlet {
 			tx.commit();
 
 			HibernateUtil.closeSession();
-
-			RequestDispatcher dispatch = request
-					.getRequestDispatcher("WEB-INF/src/view/user/register_valid.jsp");
-			dispatch.forward(request, response);
+			
+			Message.addMessage(request, "Vous êtes enregistré");
+			response.sendRedirect("");
 		} else {
 			doGet(request, response);
 		}

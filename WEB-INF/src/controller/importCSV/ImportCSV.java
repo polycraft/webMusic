@@ -33,6 +33,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import util.HibernateUtil;
+import util.session.Message;
 import au.com.bytecode.opencsv.CSVReader;
 
 
@@ -317,16 +318,10 @@ public class ImportCSV extends HttpServlet {
 				//On d�truit le fichier tempo
 				File uploadedFile = new File( this.fileUploaded );
 				uploadedFile.delete();
+				Message.addMessage(request, "import success");
 				
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (Exception e) {
+				Message.addMessage(request, "import failed");
 			}
 			
 			response.sendRedirect("importcsv");
