@@ -1,6 +1,6 @@
 package model;
 
-// Generated 12 avr. 2012 20:44:23 by Hibernate Tools 3.4.0.CR1
+// Generated 13 avr. 2012 15:26:32 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +13,7 @@ public class User implements java.io.Serializable {
 	private Integer idUser;
 	private Language language;
 	private String username;
+	private boolean admin;
 	private String password;
 	private String emailAdress;
 	private String firstname;
@@ -27,12 +28,13 @@ public class User implements java.io.Serializable {
 	public User() {
 	}
 
-	public User(Language language, String username, String password,
-			String emailAdress, String firstname, String lastname,
-			String biography, String picture, String website,
+	public User(Language language, String username, boolean admin,
+			String password, String emailAdress, String firstname,
+			String lastname, String biography, String picture, String website,
 			String socialNetworkAccount) {
 		this.language = language;
 		this.username = username;
+		this.admin = admin;
 		this.password = password;
 		this.emailAdress = emailAdress;
 		this.firstname = firstname;
@@ -43,12 +45,13 @@ public class User implements java.io.Serializable {
 		this.socialNetworkAccount = socialNetworkAccount;
 	}
 
-	public User(Language language, String username, String password,
-			String emailAdress, String firstname, String lastname,
-			String biography, String picture, String website,
+	public User(Language language, String username, boolean admin,
+			String password, String emailAdress, String firstname,
+			String lastname, String biography, String picture, String website,
 			String socialNetworkAccount, Set<Record> records, Set<Copy> copies) {
 		this.language = language;
 		this.username = username;
+		this.admin = admin;
 		this.password = password;
 		this.emailAdress = emailAdress;
 		this.firstname = firstname;
@@ -83,6 +86,14 @@ public class User implements java.io.Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public boolean isAdmin() {
+		return this.admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 
 	public String getPassword() {
