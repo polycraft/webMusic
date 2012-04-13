@@ -29,6 +29,14 @@ public class TemplateForm {
 		return "";
 	}
 	
+	public static String checked(Form form,String key) {
+		String valueTmp=form.getValue(key);
+		if(!form.get(key).hasError() && valueTmp!=null && !valueTmp.isEmpty()) {
+			return "checked=\"checked\"";
+		}
+		return "";
+	}
+	
 	public static String globalError(Form form) {
 		if(form.hasError()) {
 			StringBuilder tmp=new StringBuilder();

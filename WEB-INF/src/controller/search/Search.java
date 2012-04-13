@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
 
+import model.Record;
+import model.Track;
 import model.User;
 
 
@@ -35,10 +37,22 @@ public class Search extends HttpServlet {
 			Session sessionHibernate = HibernateUtil.currentSession();
 			
 			HttpSession session = request.getSession();
-			User user = (User)sessionHibernate.load(User.class, new Integer(session.getAttribute("idUser").toString()));
 			
-			request.setAttribute("records", query.createQuery(sessionHibernate, user));
+			User user = null;
+			if(session.getAttribute("idUser")!=null)
+				user = (User)sessionHibernate.load(User.class, (Integer) session.getAttribute("idUser"));
+			
+			request.setAttribute("result", query.createQuery(sessionHibernate, user));
 			request.setAttribute("form", form);
+			request.setAttribute("search", search);
+			request.setAttribute("user", user);
+			
+			if(search.getView().equals("record") && search.getId_record()!=null) {
+				request.setAttribute("record",sessionHibernate.get(Record.class, search.getId_record()));
+			}
+			else if(search.getView().equals("track") && search.getId_track()!=null) {
+				request.setAttribute("persons",sessionHibernate.createQuery("from Person person where person.track= :track").setParameter("track", (Track)sessionHibernate.get(Track.class, search.getId_track())).list());
+			}
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher("WEB-INF/src/view/search/search.jsp");
 			dispatch.forward(request, response);

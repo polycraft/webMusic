@@ -1,10 +1,11 @@
 <%@page import="util.form.TemplateForm"%>
+<%@page import="util.template.SearchTemplate"%>
 <%@page import="java.util.List"%>
 <%@page import="util.form.search.SearchForm"%>
-<%@page import="model.Record"%>
+<%@page import="util.form.search.Search"%>
 <%
 	SearchForm form=(SearchForm)request.getAttribute("form");
-	List<Record> records =  (List<Record>)request.getAttribute("records");
+	Search search=(Search)request.getAttribute("search");
 %>
 
 <jsp:include page="/WEB-INF/src/view/header.jsp">
@@ -16,48 +17,57 @@
 			<input type="text" class="input-medium search-query" <%= TemplateForm.value(form, "text") %> name="text">
 			<button type="submit" class="btn">Search</button>
 		</div>
+		<input type="text" class="input-medium search-query" <%= TemplateForm.value(form, "artist") %> name="artist">
 		<div class="control-group">
 			<div class="controls">
               <label class="checkbox inline">
-                <input type="checkbox" id="all" value="all" name="all"> All data base
+                <input type="checkbox" id="all" value="all" name="all" <%= TemplateForm.checked(form, "all") %> > All data base
               </label>
               <label class="checkbox inline">
-                <input type="checkbox" id="personnal" value="personnal" name="personnal"> Personnal librairy
+                <input type="checkbox" id="personnal" value="personnal" name="personnal" <%= TemplateForm.checked(form, "personnal") %>> Personnal librairy
               </label>
               <label class="checkbox">
-                <input type="checkbox" id="track" value="track" name="track"> track librairy
+                <input type="checkbox" id="tracked" value="tracked" name="tracked" <%= TemplateForm.checked(form, "tracked") %>> track librairy
               </label>
             </div>
 		</div>
+		
+		<input type="hidden" <%= TemplateForm.value(form, "order") %> name="order">
+		<input type="hidden" <%= TemplateForm.value(form, "order_col") %> name="order_col">
 	</form>
 	
 	<div class="tabbable">
 		<ul class="nav nav-tabs">
-			<li class="active"><a href="#">Record view</a></li>
-			<li class="disabled"><a href="#">Record view</a></li>
-			<li><a href="#">Track view</a></li>
+			<li <%= SearchTemplate.activateViews(search, "general", true) %>>
+				<%= SearchTemplate.linkViews(search, "general", "General view", true) %>
+			</li>
+			<%
+			if(search.getId_record()!=null) {
+				%>
+				<li <%= SearchTemplate.activateViews(search, "record", false) %>>
+					<%= SearchTemplate.linkViews(search, "record", "Record view", false) %>
+				</li>
+				<%
+			}
+			if(search.getId_track()!=null) {
+				%>
+				<li <%= SearchTemplate.activateViews(search, "track", false) %>>
+					<%= SearchTemplate.linkViews(search, "track", "Track view", false) %>
+				</li>
+				<%
+			} %>
 		</ul>
 	</div>
 	
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>Title <a href="#"><i class="icon-arrow-up"></i></a>/<a href="#"><i class="icon-arrow-down"></i></a></th>
-				<th>Width <a href="#"><i class="icon-arrow-up"></i></a>/<a href="#"><i class="icon-arrow-down"></i></a></th>
-			</tr>
-		</thead>
-		<tbody>
-			<%
-				for(Record record : records){
-			%>
-		          <tr>
-		            <td><a href="#"><%= record.getTitle() %></a></td>
-		            <td><%= record.getWidth() %></td>
-		          </tr>
-          	<%
-				}
-	        %>
-		</tbody>
-	</table>
+	<% if(search.getView().equals("record") && search.getId_record()!=null) { %>
+		<jsp:include page="/WEB-INF/src/view/search/record_view.jsp" />
+	<%
+	} else if(search.getView().equals("track") && search.getId_track()!=null) { %>
+		<jsp:include page="/WEB-INF/src/view/search/track_view.jsp" />
+	<%
+	} else { %>
+		<jsp:include page="/WEB-INF/src/view/search/general_view.jsp" />
+	<%
+	} %>
 	
 	<jsp:include page="/WEB-INF/src/view/footer.jsp" />
