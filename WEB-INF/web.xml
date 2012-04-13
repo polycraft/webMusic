@@ -103,7 +103,12 @@
 		<servlet-class>controller.implement.UpdateRecord</servlet-class>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>createPlaylistServlet</servlet-name>
+		<servlet-class>controller.library.CreatePlaylist</servlet-class>
+	</servlet>
 
+	
 
 	<servlet-mapping>
 		<servlet-name>homeServlet</servlet-name>
@@ -206,6 +211,11 @@
 	<servlet-mapping>
 		<servlet-name>updateRecordServlet</servlet-name>
 		<url-pattern>/update_record</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>createPlaylistServlet</servlet-name>
+		<url-pattern>/create_playlist</url-pattern>
 	</servlet-mapping>
 	
 
