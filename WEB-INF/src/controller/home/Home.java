@@ -13,8 +13,7 @@ public class Home extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws IOException, ServletException{
-			
-		System.out.println("bitonniau");			
+					
 			RequestDispatcher dispatch = request.getRequestDispatcher("WEB-INF/src/view/home/home.jsp");
 			dispatch.forward(request, response);
 		
