@@ -38,12 +38,6 @@ import au.com.bytecode.opencsv.CSVReader;
 
 
 
-/**
- * @author sm23772
- *
- * TODO To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Style - Code Templates
- */
 public class ImportCSV extends HttpServlet {
 	
 	private Session sessionHibernate;
@@ -143,17 +137,7 @@ public class ImportCSV extends HttpServlet {
 					}
 				}
 			}
-		}
-		catch ( FileUploadException e )
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace( );
-		}
-		catch ( Exception e )
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace( );
-		}
+	
 		
 		/////////////////////////////////////////////////////
 		// *************    TRAITEMENT CSV   **************//
@@ -161,8 +145,7 @@ public class ImportCSV extends HttpServlet {
 		
 
 	    
-		if(this.fileUploaded != null){
-			try {
+			if(this.fileUploaded != null){
 				CSVReader csvReader = new CSVReader(new FileReader(this.fileUploaded),';');
 				String [] nextLine;
 			   
@@ -319,15 +302,12 @@ public class ImportCSV extends HttpServlet {
 				File uploadedFile = new File( this.fileUploaded );
 				uploadedFile.delete();
 				Message.addMessage(request, "import success");
-				
-			} catch (Exception e) {
-				Message.addMessage(request, "import failed");
 			}
-			
-			response.sendRedirect("importcsv");
-
-
+		} catch (Exception e) {
+			Message.addError(request, "import failed");
 		}
+			
+		response.sendRedirect("importcsv");		
 	}
 }
 
