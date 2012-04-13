@@ -57,6 +57,10 @@ public class Login extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("idUser", user.get(0).getIdUser());
 				session.setAttribute("username", user.get(0).getUsername());
+				
+				if(user.get(0).isAdmin())
+					session.setAttribute("admin", user.get(0).isAdmin());
+				
 				Message.addMessage(request, "Vous êtes connecté");
 				response.sendRedirect("");
 
