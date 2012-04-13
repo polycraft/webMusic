@@ -42,12 +42,12 @@ public class OwnRecord extends HttpServlet {
 			throws IOException, ServletException {
 		
 		HttpSession session = request.getSession();
-		//Récupération des Type de copy
+		//Rï¿½cupï¿½ration des Type de copy
 		Session sessionHibernate = HibernateUtil.currentSession();
 		List<TypeCopy> typeCopies = (List<TypeCopy>) sessionHibernate.createQuery("from TypeCopy").list();
 		List<CopyCondition> copyConditions = (List<CopyCondition>) sessionHibernate.createQuery("from CopyCondition").list();
 		
-		//id du record à obtenir
+		//id du record ï¿½ obtenir
 		int idRecord = Integer.parseInt(request.getParameter("id"));
 		
 		request.setAttribute("idRecord", idRecord);
@@ -71,7 +71,7 @@ public class OwnRecord extends HttpServlet {
 		int idRecord = Integer.parseInt(request.getParameter("id"));
 		
 		if(Validator.valid()){		
-			//Récupération des Type de copy
+			//Rï¿½cupï¿½ration des Type de copy
 			Session sessionHibernate = HibernateUtil.currentSession();
 			Transaction tx = sessionHibernate.beginTransaction();
 			//on promu le record dans une copy
@@ -99,7 +99,7 @@ public class OwnRecord extends HttpServlet {
 			System.out.println(copy.getTypeCopy().getName());
 			
 			if(!alreadyOwned(copy, user)){
-				// On sauve si la copy n'existe pas déja
+				// On sauve si la copy n'existe pas dï¿½ja
 				sessionHibernate.saveOrUpdate(copy);
 				
 				//puis on supprime le flag
@@ -114,7 +114,10 @@ public class OwnRecord extends HttpServlet {
 			// Enfin on ferme la session
 			HibernateUtil.closeSession();
 			
-			response.sendRedirect("personal_library");
+			String redirect = request.getHeader("Referer");
+			if(redirect==null || redirect.isEmpty()) redirect = "personal_library";
+			
+			response.sendRedirect(redirect);
 			
 		}else {
 			form.addError(new Error("Pas de condition"));

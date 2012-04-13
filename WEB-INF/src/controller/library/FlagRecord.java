@@ -29,7 +29,7 @@ public class FlagRecord extends HttpServlet {
 		
 		int idRecordFlag = Integer.parseInt(request.getParameter("id"));
 		
-		//Récupération de tout les Records dans la base de donnée
+		//Rï¿½cupï¿½ration de tout les Records dans la base de donnï¿½e
 		Session sessionHibernate = HibernateUtil.currentSession();
 		
 
@@ -44,7 +44,7 @@ public class FlagRecord extends HttpServlet {
     		}
     	}
     	
-    	//Verif si déja présent dans les Copy owned
+    	//Verif si dï¿½ja prï¿½sent dans les Copy owned
     	//ENLEVE    	
     	/*boolean alreadyOwned = false;
     	
@@ -59,8 +59,6 @@ public class FlagRecord extends HttpServlet {
     		//already flaged
     		//Enfin on ferme la session 
     		HibernateUtil.closeSession();
-
-    		 response.sendRedirect("library");
     	}
     	else{
 
@@ -77,9 +75,11 @@ public class FlagRecord extends HttpServlet {
     	     tx.commit();
     	   //Enfin on ferme la session 
     	      HibernateUtil.closeSession();
-    	      
-    	      response.sendRedirect("library");
     	}
+    	String redirect = request.getHeader("Referer");
+		if(redirect==null || redirect.isEmpty()) redirect = "personal_library";
+		
+		response.sendRedirect(redirect);
     	
 	}
 	
