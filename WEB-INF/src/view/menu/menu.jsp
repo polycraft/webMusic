@@ -3,6 +3,12 @@
 	
 	<ul class="nav nav-list">
 	<jsp:include page="/WEB-INF/src/view/menu/menuStatic.jsp" />
+	<% if(session.getAttribute("role")!=null) {%>
+		<jsp:include page="/WEB-INF/src/view/menu/menuAdmin.jsp" />
+	<%
+	}
+	%>
+	
 	<%
 	if((session.getAttribute("idUser") != null) && session.getAttribute("username") != null){ %>
 		<jsp:include page="/WEB-INF/src/view/menu/menuConnected.jsp" />
